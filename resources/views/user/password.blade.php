@@ -33,37 +33,35 @@
   </div>
   <div class="col-sm-6">
     <div class="card">
-    <h3 class="text-center"><span class="text-danger">Hi..!</span></h3><strong class="text-warning">{{ Auth::user()->name }}</strong> Update Your Profile </h3>
+    <h3 class="text-center"><span class="text-danger">Hi..!</span></h3><strong class="text-warning">{{ Auth::user()->name }}</strong> Update Your Password </h3>
       <div class="card-body">
-      <form action="{{ route('update.profile') }}" method="POST">
+      <form action="{{ route('password-store') }}" method="POST">
         @csrf
     <div class="form-group">
-        <label for="exampleInputEmail">Name</label>
-        <input type="text" name="name" class="form-control" id="exampleInputEmail" aria-describedby="emailHelp" value="{{ Auth::user()->name }}">
-    @error('name')
+        <label for="exampleInputEmail">Old Password</label>
+        <input type="password" name="old_password" placeholder="old password" class="form-control" id="exampleInputEmail" aria-describedby="emailHelp">
+    @error('old_password')
+      <span class="text-danger">{{$message}}</span>
+    @enderror
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail">New Password</label>
+        <input type="password" name="new_password" placeholder="new password" class="form-control" id="exampleInputEmail" aria-describedby="emailHelp">
+    @error('new_password')
+      <span class="text-danger">{{$message}}</span>
+    @enderror
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail">Confirm Password</label>
+        <input type="password" name="password_confirmation" placeholder="Re-type password" class="form-control" id="exampleInputEmail" aria-describedby="emailHelp">
+    @error('password_confirmation')
       <span class="text-danger">{{$message}}</span>
     @enderror
     </div>
 
-    <div class="form-group">
-      <label for="exampleInputEmail">Email</label>
-      <input type="text" name="email" class="form-control" id="exampleInputEmail" aria-describedby="emailHelp" value="{{ Auth::user()->email }}">
-  @error('email')
-      <span class="text-danger">{{$message}}</span>
-    @enderror
-  </div>
-
-  <div class="form-group">
-    <label for="exampleInputEmail">Phone</label>
-    <input type="text" name="phone" class="form-control" id="exampleInputEmail" aria-describedby="emailHelp" value="{{ Auth::user()->phone }}">
-    @error('phone')
-      <span class="text-danger">{{$message}}</span>
-    @enderror
-</div>
-
   
         <div>
-            <button type="submit" class="btn btn-danger">Submit</a>
+            <button type="submit" class="btn btn-danger">Change Password</a>
         </div>
         </form>
     </div>
