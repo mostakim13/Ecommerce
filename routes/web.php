@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Frontend\IndexController;
 use Illuminate\Support\Facades\Auth;
 
@@ -31,6 +32,14 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin', 'auth'], 'namespace
     Route::post('update/info', [AdminController::class, 'updateInfo'])->name('update-data');
     Route::get('update/image/page', [AdminController::class, 'updateImagePage'])->name('admin-image');
     Route::post('image/store', [AdminController::class, 'imageStore'])->name('store-image');
+    Route::get('change/password', [AdminController::class, 'changePassword'])->name('change-password');
+    Route::post('change/password/store', [AdminController::class, 'changePasswordStore'])->name('change-password-store');
+    
+    //======================================Brand Routes=====================================
+    Route::get('all-brands', [BrandController::class, 'index'])->name('brands');
+    Route::post('brand/store', [BrandController::class, 'brandStore'])->name('brand-store');
+    Route::get('/brand-edit/{brand_id}', [BrandController::class, 'edit']);
+    
 });
 
 //================================================User Routes============================================

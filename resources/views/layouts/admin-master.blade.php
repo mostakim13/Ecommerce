@@ -36,6 +36,8 @@
     <link href="{{ asset('backend') }}/lib/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet">
     <link href="{{ asset('backend') }}/lib/rickshaw/rickshaw.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('backend') }}/lib/toastr/toastr.css">
+    <link href="{{ asset('backend') }}/lib/datatables/jquery.dataTables.css" rel="stylesheet">
+    <link href="{{ asset('backend') }}/lib/select2/css/select2.min.css" rel="stylesheet">
 
     <!-- Starlight CSS -->
     <link rel="stylesheet" href="{{ asset('backend') }}/css/starlight.css">
@@ -56,8 +58,8 @@
         <nav class="nav">
           <div class="dropdown">
             <a href="" class="nav-link nav-link-profile" data-toggle="dropdown">
-              <span class="logged-name">Jane<span class="hidden-md-down"> Doe</span></span>
-              <img src="{{ asset('backend') }}/img/img3.jpg" class="wd-32 rounded-circle" alt="">
+              <span class="logged-name"><span class="hidden-md-down">{{ Auth::user()->name }}</span></span>
+              <img src="{{ asset(Auth::user()->image) }}" class="wd-32 rounded-circle" alt="">
             </a>
             <div class="dropdown-menu dropdown-menu-header wd-200">
               <ul class="list-unstyled user-profile-nav">
@@ -255,6 +257,34 @@
     <script src="{{ asset('backend') }}/lib/jquery-ui/jquery-ui.js"></script>
     <script src="{{ asset('backend') }}/lib/perfect-scrollbar/js/perfect-scrollbar.jquery.js"></script>
     <script src="{{ asset('backend') }}/lib/jquery.sparkline.bower/jquery.sparkline.min.js"></script>
+    <script src="{{ asset('backend') }}/lib/datatables/jquery.dataTables.js"></script>
+    <script src="{{ asset('backend') }}/lib/datatables-responsive/dataTables.responsive.js"></script>
+    <script src="{{ asset('backend') }}/lib/select2/js/select2.min.js"></script>
+    <script>
+      $(function(){
+        'use strict';
+
+        $('#datatable1').DataTable({
+          responsive: true,
+          language: {
+            searchPlaceholder: 'Search...',
+            sSearch: '',
+            lengthMenu: '_MENU_ items/page',
+          }
+        });
+
+        // $('#datatable2').DataTable({
+        //   bLengthChange: false,
+        //   searching: false,
+        //   responsive: true
+        // });
+
+        // // Select2
+        // $('.dataTables_length select').select2({ minimumResultsForSearch: Infinity });
+
+      });
+    </script>    
+
     <script src="{{ asset('backend') }}/lib/d3/d3.js"></script>
     <script src="{{ asset('backend') }}/lib/rickshaw/rickshaw.min.js"></script>
     <script src="{{ asset('backend') }}/lib/chart.js/Chart.js"></script>

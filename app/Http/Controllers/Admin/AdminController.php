@@ -7,6 +7,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Intervention\Image\Facades\Image;
 
 class AdminController extends Controller
@@ -82,6 +83,50 @@ class AdminController extends Controller
             $notification=array(
                 'message'=>'Image Successfully Updated',
                 'alert-type' =>'success'
+            );
+            return Redirect()->back()->with($notification);
+            }
+    }
+
+    //========================================Change Password===============================
+    public function changePassword(){
+        return view('admin.profile.password');
+    }
+    public function changePasswordStore(Request $request){
+        $request->validate([
+            'old_password'=>'required',
+            'new_password'=>'required',
+            'password_confirmation'=>'required',
+        ]);
+
+        $db_pass = Auth::user()->password;
+        $current_pass = $request->old_password;
+        $new_pass = $request->new_password;
+        $pass_confirmation = $request->password_confirmation;
+
+        if (Hash::check($current_pass,$db_pass)) {
+            if($new_pass == $pass_confirmation){
+                User::findOrFail(Auth::id())->update([
+                    'password' => Hash::make($new_pass)
+                ]);
+                Auth::logout();
+                $notification=array(
+                    'message'=>'Password change successfully. Please login',
+                    'alert-type' =>'success'
+                );
+                return Redirect()->back()->with($notification);
+            }else{
+                $notification=array(
+                    'message'=>'New password and Confirmation Password does not match',
+                    'alert-type' =>'error'
+                );
+                return Redirect()->route('login')->with($notification);
+
+            }
+        }else{
+            $notification=array(
+                'message'=>'Old password does not match',
+                'alert-type' =>'error'
             );
             return Redirect()->back()->with($notification);
             }
