@@ -35,6 +35,7 @@
     <link href="{{ asset('backend') }}/lib/Ionicons/css/ionicons.css" rel="stylesheet">
     <link href="{{ asset('backend') }}/lib/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet">
     <link href="{{ asset('backend') }}/lib/rickshaw/rickshaw.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('backend') }}/lib/toastr/toastr.css">
 
     <!-- Starlight CSS -->
     <link rel="stylesheet" href="{{ asset('backend') }}/css/starlight.css">
@@ -60,7 +61,7 @@
             </a>
             <div class="dropdown-menu dropdown-menu-header wd-200">
               <ul class="list-unstyled user-profile-nav">
-                <li><a href=""><i class="icon ion-ios-person-outline"></i> Edit Profile</a></li>
+                <li><a href="{{ route('profile') }}"><i class="icon ion-ios-person-outline"></i> Edit Profile</a></li>
                 <li><a href=""><i class="icon ion-ios-gear-outline"></i> Settings</a></li>
                 <li>
                 <a href="{{ route('logout') }}"onclick="event.preventDefault();
@@ -265,5 +266,30 @@
     <script src="{{ asset('backend') }}/js/starlight.js"></script>
     <script src="{{ asset('backend') }}/js/ResizeSensor.js"></script>
     <script src="{{ asset('backend') }}/js/dashboard.js"></script>
+    <script src="{{ asset('backend') }}/lib/toastr/toastr.min.js"></script>
+
+    <script>
+      @if (Session::has('message'))
+          var type ="{{ Session::get('alert-type', 'info') }}"
+          switch(type){
+          case 'info':
+          toastr.info(" {{ Session::get('message') }} ");
+          break;
+      
+          case 'success':
+          toastr.success(" {{ Session::get('message') }} ");
+          break;
+      
+          case 'warning':
+          toastr.warning(" {{ Session::get('message') }} ");
+          break;
+      
+          case 'error':
+          toastr.error(" {{ Session::get('message') }} ");
+          break;
+          }
+      @endif
+  </script>
+
   </body>
 </html>

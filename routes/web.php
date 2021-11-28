@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Frontend\IndexController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +26,11 @@ Auth::routes();
 //================================================Admin Routes===========================================
 Route::group(['prefix' => 'admin', 'middleware' => ['admin', 'auth'], 'namespace' => 'Admin'], function () {
     Route::get('dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+    //==================================PROFILE======================================
+    Route::get('profile', [AdminController::class, 'profile'])->name('profile');
+    Route::post('update/info', [AdminController::class, 'updateInfo'])->name('update-data');
+    Route::get('update/image/page', [AdminController::class, 'updateImagePage'])->name('admin-image');
+    Route::post('image/store', [AdminController::class, 'imageStore'])->name('store-image');
 });
 
 //================================================User Routes============================================

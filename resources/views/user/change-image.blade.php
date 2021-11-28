@@ -14,23 +14,14 @@
 
 <div class="body-content">
 	<div class="container">
+  <div class="sign-in-page">
     <div class="row">
-  <div class="col-sm-6">
-    <div class="card" style="width: 18rem;">
-     <img src="{{asset(Auth::user()->image)}}" class="card-img-top" style="border-radious: 50%;" height="100%;" width="100%;" alt="Card image cap">
-  <ul class="list-group list-group-flush">
-   <a href="{{ route('user.dashboard') }}" class="btn btn-primary btn-sm btn-block"> Home </a>
-   
-   <a href="{{ route('user-image') }}" class="btn btn-primary btn-sm btn-block"> Update Image </a>
+  <div class="col-md-4">
+  
+    @include('user.inc.sidebar')
 
-   <a href="{{ route('logout') }}" class="btn btn-danger btn-sm btn-block" onclick="event.preventDefault();
-                		document.getElementById('logout-form').submit();"> Sign Out
-					</a>
-   
-  </ul>
-</div>
   </div>
-  <div class="col-sm-6">
+  <div class="col-md-8">
     <div class="card">
     <h3 class="text-center"><span class="text-danger">Hi..!</span></h3><strong class="text-warning">{{ Auth::user()->name }}</strong> Update Your Profile </h3>
       <div class="card-body">
@@ -43,9 +34,7 @@
             @error('image')
             <span class="text-danger">{{$message}}</span>
             @enderror
-        </div>
-
-  
+        </div>  
         <div>
             <button type="submit" class="btn btn-danger">Upload</a>
         </div>
@@ -53,6 +42,7 @@
     </div>
   </div>
 </div>
+    </div>
     </div>
 </div>
 @endsection

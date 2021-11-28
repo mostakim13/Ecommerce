@@ -656,7 +656,6 @@
             }
         @endif
     </script>
-s
 
 
 </body>
