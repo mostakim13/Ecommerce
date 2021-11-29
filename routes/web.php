@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\BrandController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Frontend\IndexController;
 use Illuminate\Support\Facades\Auth;
 
@@ -42,6 +43,12 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin', 'auth'], 'namespace
     Route::post('brand/update', [BrandController::class, 'brandUpdate'])->name('update-brand');
     Route::get('/brand-delete/{brand_id}',[BrandController::class,'delete']);
     
+    //====================================Category Routes===================================
+    Route::get('category', [CategoryController::class, 'index'])->name('category');
+    Route::post('category/store', [CategoryController::class, 'categoryStore'])->name('category-store');
+    Route::get('/category-edit/{cat_id}', [CategoryController::class, 'edit']);
+    Route::post('category/update', [CategoryController::class, 'categoryUpdate'])->name('update-category');
+    Route::get('/category-delete/{cat_id}',[CategoryController::class,'delete']);
 });
 
 //================================================User Routes============================================
