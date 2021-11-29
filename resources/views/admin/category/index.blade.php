@@ -24,7 +24,7 @@
                       <table id="datatable1" class="table display responsive nowrap">
                         <thead>
                           <tr>
-                            <th class="wd-30p">Category image</th>
+                            <th class="wd-30p">Category icon</th>
                             <th class="wd-25p">Category name en</th>
                             <th class="wd-25p">Category name bn</th>
                             <th class="wd-20p">Action</th>

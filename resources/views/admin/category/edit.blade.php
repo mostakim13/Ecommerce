@@ -1,5 +1,8 @@
 @extends('layouts.admin-master')
 @section('categories')
+    active show-sub
+@endsection
+@section('add-category')
     active
 @endsection
 @section('admin-content')

@@ -49,7 +49,15 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin', 'auth'], 'namespace
     Route::get('/category-edit/{cat_id}', [CategoryController::class, 'edit']);
     Route::post('category/update', [CategoryController::class, 'categoryUpdate'])->name('update-category');
     Route::get('/category-delete/{cat_id}',[CategoryController::class,'delete']);
+
+    //=====================================Sub-Category Routes=================================
+    Route::get('sub-category', [CategoryController::class, 'subIndex'])->name('sub-category');
+    Route::post('sub-category/store', [CategoryController::class, 'subCategoryStore'])->name('subcategory-store');
+    Route::get('/sub-category-edit/{subcat_id}', [CategoryController::class, 'subEdit']);
+    Route::post('sub-category/update', [CategoryController::class, 'subCategoryUpdate'])->name('update-sub-category');
+    Route::get('/sub-category-delete/{subcat_id}',[CategoryController::class,'subDelete']);
 });
+
 
 //================================================User Routes============================================
 Route::group(['prefix' => 'user', 'middleware' => ['user', 'auth'], 'namespace' => 'User'], function () {
