@@ -320,6 +320,8 @@
           }
       @endif
   </script>
+  <script src="{{ asset('backend') }}/lib/sweetalert/sweetalert.min.js"></script>
+  <script src="{{ asset('backend') }}/lib/sweetalert/code.js"></script>
 
   </body>
 </html>

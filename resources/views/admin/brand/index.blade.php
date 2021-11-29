@@ -38,7 +38,7 @@
                             <td>{{ $item->brand_name_bn }}</td>
                             <td>
                                 <a href="{{ url('admin/brand-edit/'.$item->id) }}" class="btn btn-info btn-sm" title="edit data"><i class="fa fa-pencil"></i></a>
-                                <a href="" class="btn btn-danger btn-sm" title="delete data"><i class="fa fa-trash"></i></a>
+                                <a href="{{ url('admin/brand-delete/'.$item->id) }}" class="btn btn-sm btn-danger" id="delete" title="delete data"><i class="fa fa-trash"></i></a>
                             </td>
                           </tr>
                           @endforeach
