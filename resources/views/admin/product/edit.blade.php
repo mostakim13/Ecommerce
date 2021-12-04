@@ -275,6 +275,59 @@
                 <button class="btn btn-info mg-r-5" type="submit" style="cursor: pointer;">Update Products</button>
               </div><!-- form-layout-footer -->
             </form>
+            <form action="{{ route('update-product-thambnail') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <input type="hidden" name="product_id" value="{{ $product->id }}">
+            <input type="hidden" name="old_img" value="{{ $product->product_thambnail }}">
+            <div class="row row-sm" style="margin-top: 30px;">
+                <div class="col-md-3">
+                    <div class="card">
+                      <img src="{{ asset($product->product_thambnail) }}" class="card-img-top" alt="...">
+                      <div class="card-body">
+                        <p class="card-text">
+                            <div class="form-group">
+                                <label class="form-control-label">Change Image<span class="tx-danger">*</span></label>
+                                <input class="form-control" type="file" name="product_thambnail" onchange="mainThambUrl(this)"> 
+                            </div>
+                            <img src="" id="mainThmb">
+                        </p>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-layout-footer">
+                <button type="submit" class="btn btn-info">Update Thambnail</button>
+            </div><!-- form-layout-footer -->
+            </form>
+
+            <form action="{{ route('update-product-image') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="row row-sm" style="margin-top: 30px;">
+                    @foreach ($multiImgs as $img)   
+                    <div class="col-md-3">
+                        <div class="card">
+                        <img src="{{ asset($img->photo_name) }}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <a href="{{ url('admin/sub-category-delete/'.$img->id) }}" class="btn btn-sm btn-danger" id="delete" title="delete data"><i class="fa fa-trash"></i></a>
+                            </h5>
+                            <p class="card-text">
+                                <div class="form-group">
+                                    <label class="form-control-label">Change Image<span class="tx-danger">*</span></label>
+                                    <input class="form-control" type="file" name="multiImg[{{ $img->id }}]">
+                                </div>
+                            </p>
+                        </div>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+                <div class="form-layout-footer">
+                    <button type="submit" class="btn btn-info">Update Image</button>
+                </div><!-- form-layout-footer -->
+    
+            </form>
+
             </div><!-- row -->
 
             {{-- <div class="col-md-4">
