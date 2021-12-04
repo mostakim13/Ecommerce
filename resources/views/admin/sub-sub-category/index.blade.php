@@ -90,7 +90,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="form-control-label">sub-Category Name Bangla: <span class="tx-danger">*</span></label>
+                        <label class="form-control-label">sub-Sub-Category Name Bangla: <span class="tx-danger">*</span></label>
                         <input class="form-control" type="text" name="subsubcategory_name_bn" value="{{ old('subsubcategory_name_bn') }}" placeholder="Enter subcategory name bn">
                         @error('subsubcategory_name_bn')
                         <span class="text-danger">{{ $message }}</span>
