@@ -81,6 +81,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin', 'auth'], 'namespace
     Route::post('product/thambnail/update', [ProductController::class, 'thambnailUpdate'])
     ->name('update-product-thambnail');
     Route::get('product/multiimg/delete/{id}',[ProductController::class,'multiImageDelete']);
+    Route::get('product-inactive/{id}',[ProductController::class,'inactive']);
+    Route::get('product-active/{id}',[ProductController::class,'active']);
 });
 
 

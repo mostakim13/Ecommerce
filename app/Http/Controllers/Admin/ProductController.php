@@ -215,4 +215,23 @@ public function multiImageDelete($id){
     );
     return Redirect()->back()->with($notification);
     }
+
+    //==========================Product Active and Inactive============================
+    public function inactive($id){
+        Product::findOrFail($id)->update(['status'=>0]);
+        
+        $notification=array(
+            'message'=>'Product Inactivated',
+            'alert-type'=>'success'
+        );
+        return Redirect()->back()->with($notification);
+    }
+    public function active($id){
+        Product::findOrFail($id)->update(['status'=>1]);
+        $notification=array(
+            'message'=>'Product Activated',
+            'alert-type'=>'success'
+        );
+        return Redirect()->back()->with($notification);
+    }
 }
