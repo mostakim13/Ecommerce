@@ -309,7 +309,7 @@
                         <img src="{{ asset($img->photo_name) }}" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">
-                                <a href="{{ url('admin/sub-category-delete/'.$img->id) }}" class="btn btn-sm btn-danger" id="delete" title="delete data"><i class="fa fa-trash"></i></a>
+                                <a href="{{ url('admin/product/multiimg/delete/'.$img->id) }}" class="btn btn-sm btn-danger" id="delete" title="delete data"><i class="fa fa-trash"></i></a>
                             </h5>
                             <p class="card-text">
                                 <div class="form-group">

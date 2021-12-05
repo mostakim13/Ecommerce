@@ -203,4 +203,16 @@ public function multiImgUpdate(Request $request){
     return Redirect()->back()->with($notification);
 }
 
+//============================MULTIIMAGE DELETE============================
+public function multiImageDelete($id){
+    $oldimg = MultiImg::findOrFail($id);
+    unlink($oldimg->photo_name);
+    MultiImg::findOrFail($id)->delete();
+
+    $notification=array(
+        'message'=>'Product Image Delete Success',
+        'alert-type'=>'success'
+    );
+    return Redirect()->back()->with($notification);
+    }
 }
