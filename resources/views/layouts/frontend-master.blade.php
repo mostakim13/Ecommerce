@@ -49,7 +49,13 @@
 		<div class="header-top-inner">
 			<div class="cnt-account">
 				<ul class="list-unstyled">
-					<li><a href="#"><i class="icon fa fa-user"></i>My Account</a></li>
+					<li><a href="#"><i class="icon fa fa-user"></i>
+                        @if(session()->get('language')=='bangla')
+                        আমার অ্যাকাউন্ট
+                        @else
+                        My Account
+                    @endif
+                    </a></li>
 					<li><a href="#"><i class="icon fa fa-heart"></i>Wishlist</a></li>
 					<li><a href="#"><i class="icon fa fa-shopping-cart"></i>My Cart</a></li>
 					<li><a href="#"><i class="icon fa fa-check"></i>Checkout</a></li>
@@ -79,11 +85,16 @@
 					</li>
 
 					<li class="dropdown dropdown-small">
-						<a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown"><span class="value">English </span><b class="caret"></b></a>
+						<a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown"><span class="value">  @if(session()->get('language')=='bangla') ভাষা পরিবর্তন করুন @else Language @endif</span><b class="caret"></b></a>
 						<ul class="dropdown-menu">
-							<li><a href="#">English</a></li>
-							<li><a href="#">French</a></li>
-							<li><a href="#">German</a></li>
+                            @if(session()->get('language')=='bangla')
+                                <li><a href="{{ route('english.language') }}">English</a></li>
+                            @else
+                                <li><a href="{{ route('bangla.language') }}">বাংলা</a></li>
+                            @endif
+							
+							
+							
 						</ul>
 					</li>
 				</ul><!-- /.list-unstyled -->

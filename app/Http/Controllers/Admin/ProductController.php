@@ -108,6 +108,15 @@ public function edit($product_id){
     return view('admin.product.edit',compact('product','categories','brands','multiImgs'));
 }
 
+//=======================================PRODUCT VIEW=======================================
+public function view($product_id){
+    $product = Product::findOrFail($product_id);
+    $categories = Category::latest()->get();
+    $multiImgs = MultiImg::where('product_id',$product_id)->latest()->get();
+    $brands = Brand::latest()->get();
+    return view('admin.product.view',compact('product','categories','brands','multiImgs'));
+}
+
 //========================================PRODUCT UPDATE WITHOUT IMAGE=======================================
 public function productDataUpdate(Request $request){
     $product_id = $request->product_id;
@@ -230,6 +239,22 @@ public function multiImageDelete($id){
         Product::findOrFail($id)->update(['status'=>1]);
         $notification=array(
             'message'=>'Product Activated',
+            'alert-type'=>'success'
+        );
+        return Redirect()->back()->with($notification);
+    }
+    //Delete Product
+    public function delete($product_id){
+        $product = Product::findOrFail($product_id);
+        unlink($product->product_thambnail);
+        Product::findOrFail($product_id)->delete();
+        $images = MultiImg::where('product_id',$product_id)->get();
+        foreach ($images as $key => $img) {
+            unlink($img->photo_name);
+            MultiImg::where('product_id',$product_id)->delete();
+        }
+        $notification=array(
+            'message'=>'Product Delete Success',
             'alert-type'=>'success'
         );
         return Redirect()->back()->with($notification);

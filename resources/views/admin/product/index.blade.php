@@ -48,8 +48,9 @@
                               <span class="badge badge-pill badge-danger">No</span>
                               @else
                               @php
-                                $amount = $item->selling_price - $item->discount_price;
-                                $discount = (($amount/$item->selling_price)*100);
+                                $amount =  $item->discount_price/$item->selling_price ;
+                                $discount = $amount*100;
+                               
                       
                               @endphp
                               <span class="badge badge-pill badge-success">{{ round($discount) }}%</span>
@@ -63,7 +64,7 @@
                               @endif
                             </td>
                             <td>
-                                <a href="{{ url('admin/product-edit/'.$item->id) }}" class="btn btn-info btn-sm" title="edit data"><i class="fa fa-eye"></i></a>
+                                <a href="{{ url('admin/product-view/'.$item->id) }}" class="btn btn-info btn-sm" title="view data"><i class="fa fa-eye"></i></a>
 
                                 <a href="{{ url('admin/product-edit/'.$item->id) }}" class="btn btn-info btn-sm" title="edit data"><i class="fa fa-pencil"></i></a>
 

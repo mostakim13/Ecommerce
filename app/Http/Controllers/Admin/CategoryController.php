@@ -30,7 +30,7 @@ class CategoryController extends Controller
         Category::insert([
             'category_name_en' => $request->category_name_en,
             'category_name_bn' => $request->category_name_bn,
-            'category_slug_en' => strtolower(str_replace(' ','-',$request->category_slug_en)),
+            'category_slug_en' => strtolower(str_replace(' ','-',$request->category_name_en)),
             'category_slug_bn' => str_replace(' ','-',$request->category_name_bn),
             'category_icon' => $request->category_icon,
             'created_at' => Carbon::now(),
@@ -54,7 +54,7 @@ class CategoryController extends Controller
         Category::findOrFail($cat_id)->Update([
             'category_name_en' => $request->category_name_en,
             'category_name_bn' => $request->category_name_bn,
-            'category_slug_en' => strtolower(str_replace(' ','-',$request->category_slug_en)),
+            'category_slug_en' => strtolower(str_replace(' ','-',$request->category_name_en)),
             'category_slug_bn' => str_replace(' ','-',$request->category_name_bn),
             'category_icon' => $request->category_icon,
             'created_at' => Carbon::now(),
@@ -98,7 +98,7 @@ class CategoryController extends Controller
             'category_id' => $request->category_id,
             'subcategory_name_en' => $request->subcategory_name_en,
             'subcategory_name_bn' => $request->subcategory_name_bn,
-            'subcategory_slug_en' => strtolower(str_replace(' ','-',$request->subcategory_slug_en)),
+            'subcategory_slug_en' => strtolower(str_replace(' ','-',$request->subcategory_name_en)),
             'subcategory_slug_bn' => str_replace(' ','-',$request->subcategory_name_bn),
             'created_at' => Carbon::now(),
         ]);
@@ -122,7 +122,7 @@ class CategoryController extends Controller
             'category_id' => $request->category_id,
             'subcategory_name_en' => $request->subcategory_name_en,
             'subcategory_name_bn' => $request->subcategory_name_bn,
-            'subcategory_slug_en' => strtolower(str_replace(' ','-',$request->subcategory_slug_en)),
+            'subcategory_slug_en' => strtolower(str_replace(' ','-',$request->subcategory_name_en)),
             'subcategory_slug_bn' => str_replace(' ','-',$request->subcategory_name_bn),
             'updated_at' => Carbon::now(),
         ]);
@@ -171,7 +171,7 @@ class CategoryController extends Controller
             'subcategory_id' => $request->subcategory_id,
             'subsubcategory_name_en' => $request->subsubcategory_name_en,
             'subsubcategory_name_bn' => $request->subsubcategory_name_bn,
-            'subsubcategory_slug_en' => strtolower(str_replace(' ','-',$request->subsubcategory_slug_en)),
+            'subsubcategory_slug_en' => strtolower(str_replace(' ','-',$request->subsubcategory_name_en)),
             'subsubcategory_slug_bn' => str_replace(' ','-',$request->subsubcategory_name_bn),
             'created_at' => Carbon::now(),
         ]);
@@ -195,7 +195,7 @@ class CategoryController extends Controller
             
             'subsubcategory_name_en' => $request->subsubcategory_name_en,
             'subsubcategory_name_bn' => $request->subsubcategory_name_bn,
-            'subsubcategory_slug_en' => strtolower(str_replace(' ','-',$request->subsubcategory_slug_en)),
+            'subsubcategory_slug_en' => strtolower(str_replace(' ','-',$request->subsubcategory_name_en)),
             'subsubcategory_slug_bn' => str_replace(' ','-',$request->subsubcategory_name_bn),
             'updated_at' => Carbon::now(),
         ]);

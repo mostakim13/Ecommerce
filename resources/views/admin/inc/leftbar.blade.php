@@ -23,6 +23,13 @@
             <span class="menu-item-label">Brands</span>
           </div><!-- menu-item -->
         </a><!-- sl-menu-link -->
+
+        <a href="{{ route('sliders') }}" class="sl-menu-link @yield('sliders')">
+          <div class="sl-menu-item">
+            <i class="menu-item-icon icon ion-ios-home-outline tx-22"></i>
+            <span class="menu-item-label">Sliders</span>
+          </div><!-- menu-item -->
+        </a><!-- sl-menu-link -->
         
         <a href="#" class="sl-menu-link @yield('categories')">
           <div class="sl-menu-item">
