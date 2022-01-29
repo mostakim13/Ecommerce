@@ -20,6 +20,7 @@
               <form action="{{ route('store-product') }}" method="POST" enctype="multipart/form-data">
                 @csrf
             <div class="row row-sm">
+
                     <div class="col-md-4">
                         <div class="form-group">
                             <label class="form-control-label">Select Brand: <span class="tx-danger">*</span></label>
@@ -390,7 +391,8 @@
   </script>
 
   <script>
-    function mainThambUrl(input){
+    function ma
+inThambUrl(input){
       if (input.files && input.files[0]) {
         var reader = new FileReader();
 
@@ -404,5 +406,6 @@
       }
     }
   </script>
+
 
     @endsection
