@@ -9,7 +9,7 @@
           <a class="breadcrumb-item" href="index.html">SHopMama</a>
           <span class="breadcrumb-item active">Brand Update</span>
         </nav>
-  
+
         <div class="sl-pagebody">
             <div class="card pd-20 pd-sm-40">
               <h6 class="card-body-title">Update Brand</h6>
@@ -26,8 +26,8 @@
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                           </div>
-                    </div>  
-  
+                    </div>
+
                     <div class="col-md-4">
                         <div class="form-group">
                             <label class="form-control-label">Brand Name Bangla: <span class="tx-danger">*</span></label>
@@ -36,8 +36,8 @@
                             <span class="text-danger">{{ $message }}</span>
                           @enderror
                           </div>
-                    </div>  
-                  
+                    </div>
+
                   <div class="col-md-4">
                     <div class="form-group">
                         <label class="form-control-label">Brand Image: <span class="tx-danger">*</span></label>
@@ -46,13 +46,13 @@
                         <span class="text-danger">{{ $message }}</span>
                      @enderror
                       </div>
-                  </div> 
+                  </div>
               <div class="form-layout-footer mt-3">
                 <button class="btn btn-info mg-r-5" type="submit" style="cursor: pointer;">Update Brand</button>
               </div><!-- form-layout-footer -->
             </form>
             </div>
-            </div><!-- row --> 
+            </div><!-- row -->
 
 
     </div>

@@ -27,7 +27,7 @@
                             <select class="form-control select2-show-search" data-placeholder="Select One" name="brand_id">
                               <option label="Choose one"></option>
                               @foreach ($brands as $brand)
-                              <option value="{{ $brand->id }}" {{ $brand->id == $product->brand_id ? 'selected' : '' }}>{{ ucwords($brand->brand_name_en) }}</option>
+                              <option value="{{ $brand->id }}" {{ $brand->id == $product->brand_id ? 'selected' :'' }}>{{ ucwords($brand->brand_name_en) }}</option>
                               @endforeach
                             </select>
                             @error('brand_id')
@@ -43,7 +43,7 @@
                             <select class="form-control select2-show-search" data-placeholder="Select One" name="category_id">
                               <option label="Choose one"></option>
                               @foreach ($categories as $cat)
-                              <option value="{{ $cat->id }}"  {{ $cat->id == $product->category_id ? 'selected' : '' }}>{{ ucwords($cat->category_name_en) }}</option>
+                              <option value="{{ $cat->id }}" {{ $cat->id == $product->category_id ? 'selected' :'' }}>{{ ucwords($cat->category_name_en) }}</option>
                               @endforeach
                             </select>
                             @error('category_id')
@@ -95,7 +95,7 @@
                   <div class="col-md-4">
                     <div class="form-group">
                         <label class="form-control-label">Product Name Bangla: <span class="tx-danger">*</span></label>
-                        <input class="form-control" type="text" name="product_name_bn" value="{{ $product->product_name_bn }}" placeholder="Product Name Bangla">
+                        <input class="form-control" type="text" name="product_name_bn" value="{{ $product->product_name_bn }}" placeholder="Product Name Bangla" >
                         @error('product_name_bn')
                         <span class="text-danger">{{ $message }}</span>
                       @enderror
@@ -135,7 +135,7 @@
                   <div class="col-md-4">
                     <div class="form-group">
                         <label class="form-control-label">Product Tags Bangla: <span class="tx-danger">*</span></label>
-                        <input class="form-control" type="text" name="product_tags_bn" value="{{ $product->product_tags_bn }}" placeholder="product tags bangla" data-role="tagsinput">
+                        <input class="form-control" type="text" name="product_tags_bn"  placeholder="product tags bangla" data-role="tagsinput" value="{{ $product->product_tags_bn }}">
                         @error('product_tags_bn')
                         <span class="text-danger">{{ $message }}</span>
                       @enderror
@@ -145,7 +145,7 @@
                   <div class="col-md-4">
                     <div class="form-group">
                         <label class="form-control-label">Product Size English: <span class="tx-danger">*</span></label>
-                        <input class="form-control" type="text" name="product_size_en" value="{{ $product->product_size_en }}" placeholder="Product Size English" data-role="tagsinput">
+                        <input class="form-control" type="text" name="product_size_en"  placeholder="Product Size English" data-role="tagsinput" value="{{ $product->product_size_en }}">
                         @error('product_size_en')
                         <span class="text-danger">{{ $message }}</span>
                       @enderror
@@ -185,7 +185,7 @@
                   <div class="col-md-4">
                     <div class="form-group">
                         <label class="form-control-label">Selling Price: <span class="tx-danger">*</span></label>
-                        <input class="form-control" type="text" name="selling_price" value="{{ $product->selling_price }}" placeholder="Selling Price">
+                        <input class="form-control" type="text" name="selling_price" value="{{ $product->selling_price }}"  placeholder="Selling Price">
                         @error('selling_price')
                         <span class="text-danger">{{ $message }}</span>
                       @enderror
@@ -195,14 +195,13 @@
                   <div class="col-md-4">
                     <div class="form-group">
                         <label class="form-control-label">Discount Price: <span class="tx-danger">*</span></label>
-                        <input class="form-control" type="text" name="discount_price" value="{{ $product->discount_price }}" placeholder="Discount Price">
+                        <input class="form-control" type="text" name="discount_price" value="{{ $product->discount_price }}"  placeholder="Discount Price">
                         @error('discount_price')
                         <span class="text-danger">{{ $message }}</span>
                       @enderror
                       </div>
                   </div>
 
-                  
 
                   <div class="col-md-8">
                     <div class="form-group">
@@ -246,87 +245,91 @@
 
                   <div class="col-md-4">
                   <label class="ckbox">
-                    <input type="checkbox" name="hot_deals" value="1" {{ $product->hot_deals == 1 ? 'checked':'' }}><span>Hot Deals</span>
+                    <input type="checkbox" name="hot_deals" value="1" {{ $product->hot_deals == 1 ?'checked': '' }}><span>Hot Deals</span>
                   </label>
                   </div>
 
                   <div class="col-md-4">
                     <label class="ckbox">
-                      <input type="checkbox" name="featured" value="1" {{ $product->featured == 1 ? 'checked':'' }}><span>Featured</span>
+                      <input type="checkbox" name="featured" value="1" {{ $product->featured == 1 ? 'checked': '' }}><span>Featured</span>
                     </label>
                     </div>
 
                     <div class="col-md-4">
                         <label class="ckbox">
-                          <input type="checkbox" name="special_offer" value="1" {{ $product->special_offer == 1 ? 'checked':'' }}><span>special_offer</span>
+                          <input type="checkbox" name="special_offer" value="1" {{ $product->special_offer == 1 ? 'checked': '' }}><span>special_offer</span>
                         </label>
                     </div>
 
                     <div class="col-md-4">
                         <label class="ckbox">
-                          <input type="checkbox" name="special_deals" value="1" {{ $product->special_deals == 1 ? 'checked':'' }}><span>special_deals</span>
+                          <input type="checkbox" name="special_deals" value="1" {{ $product->special_deals == 1 ? 'checked': '' }}><span>special_deals</span>
                         </label>
                     </div>
-
-                  
-            
             </div>
-            <div class="form-layout-footer mt-3">
-                <button class="btn btn-info mg-r-5" type="submit" style="cursor: pointer;">Update Products</button>
+            <div class="form-layout-footer mt-3" >
+                <button class="btn btn-info mg-r-5" type="submit" style="cursor: pointer;">Update Product</button>
               </div><!-- form-layout-footer -->
             </form>
-            <form action="{{ route('update-product-thambnail') }}" method="POST" enctype="multipart/form-data">
+
+          <form action="{{ route('update-product-thambnail') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <input type="hidden" name="product_id" value="{{ $product->id }}">
             <input type="hidden" name="old_img" value="{{ $product->product_thambnail }}">
-            <div class="row row-sm" style="margin-top: 30px;">
-                <div class="col-md-3">
+            <br>
+            <h4>Update Product Thambnail</h4>
+            <div class="row row-sm" style="margin-top:30px;">
+                  <div class="col-md-3">
                     <div class="card">
-                      <img src="{{ asset($product->product_thambnail) }}" class="card-img-top" alt="...">
+                      <img class="card-img-top" src="{{ asset($product->product_thambnail) }}" alt="Card image cap" style="height: 150px; width:150px;">
                       <div class="card-body">
                         <p class="card-text">
-                            <div class="form-group">
-                                <label class="form-control-label">Change Image<span class="tx-danger">*</span></label>
-                                <input class="form-control" type="file" name="product_thambnail" onchange="mainThambUrl(this)"> 
-                            </div>
-                            <img src="" id="mainThmb">
+                          <div class="form-group">
+                            <label class="form-control-label">Change Image<span class="tx-danger">*</span></label>
+                            <input class="form-control" type="file" name="product_thambnail" onchange="mainThambUrl(this)">
+                          </div>
+                          <img src="" id="mainThmb">
                         </p>
                       </div>
                     </div>
-                </div>
+                  </div>
             </div>
-            <div class="form-layout-footer">
-                <button type="submit" class="btn btn-info">Update Thambnail</button>
-            </div><!-- form-layout-footer -->
-            </form>
 
-            <form action="{{ route('update-product-image') }}" method="POST" enctype="multipart/form-data">
-                @csrf
-                <div class="row row-sm" style="margin-top: 30px;">
-                    @foreach ($multiImgs as $img)   
-                    <div class="col-md-3">
-                        <div class="card">
-                        <img src="{{ asset($img->photo_name) }}" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">
-                                <a href="{{ url('admin/product/multiimg/delete/'.$img->id) }}" class="btn btn-sm btn-danger" id="delete" title="delete data"><i class="fa fa-trash"></i></a>
-                            </h5>
-                            <p class="card-text">
-                                <div class="form-group">
-                                    <label class="form-control-label">Change Image<span class="tx-danger">*</span></label>
-                                    <input class="form-control" type="file" name="multiImg[{{ $img->id }}]">
-                                </div>
-                            </p>
-                        </div>
-                        </div>
+            <div class="form-layout-footer">
+              <button type="submit" class="btn btn-info">Update Thambnail</button>
+            </div><!-- form-layout-footer -->
+          </form>
+
+          <form action="{{ route('update-product-image') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <br>
+            <h4>Update Product Multiple Image</h4>
+            <div class="row row-sm" style="margin-top:50px;">
+
+              @foreach ($multiImgs as $img)
+                  <div class="col-md-3">
+                    <div class="card" >
+                      <img class="card-img-top" src="{{ asset($img->photo_name) }}" alt="Card image cap" style="height: 150px; width:150px;">
+                      <div class="card-body">
+                        <h5 class="card-title">
+                          <a href="{{ url('admin/product/multiimg/delete/'.$img->id) }}" class="btn btn-sm btn-danger" id="delete" title="delete data"><i class="fa fa-trash"></i></a>
+                        </h5>
+                        <p class="card-text">
+                          <div class="form-group">
+                            <label class="form-control-label">Change Image<span class="tx-danger">*</span></label>
+                            <input class="form-control" type="file" name="multiImg[{{ $img->id }}]" >
+                          </div>
+                        </p>
+                      </div>
                     </div>
+                  </div>
                     @endforeach
-                </div>
-                <div class="form-layout-footer">
-                    <button type="submit" class="btn btn-info">Update Image</button>
-                </div><!-- form-layout-footer -->
-    
-            </form>
+            </div>
+
+            <div class="form-layout-footer">
+              <button type="submit" class="btn btn-info">Update Image</button>
+            </div><!-- form-layout-footer -->
+          </form>
 
             </div><!-- row -->
 
@@ -339,7 +342,7 @@
                   @enderror
                   <img src="" id="mainThmb">
                   </div>
-              </div>
+            </div>
 
               <div class="col-md-4">
                 <div class="form-group">
@@ -351,9 +354,7 @@
                   </div>
                   <div class="row" id="preview_img" >
                   </div>
-              </div> --}}
-
-
+              </div>  --}}
     </div>
 
     <script src="{{asset('backend')}}/lib/jquery-2.2.4.min.js"></script>
@@ -464,3 +465,4 @@
   </script>
 
     @endsection
+

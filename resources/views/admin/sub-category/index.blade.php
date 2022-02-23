@@ -32,7 +32,7 @@
                         </thead>
                         <tbody>
 
-                            @foreach ($subcategories as $item)    
+                            @foreach ($subcategories as $item)
                           <tr>
                             <td>
                                 {{ $item->category->category_name_en }}
@@ -85,13 +85,13 @@
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
-                                
+
                                 <div class="form-layout-footer">
                                     <button type="submit" class="btn btn-info">Add New</button>
                                 </div><!-- form-layout-footer -->
                             </form>
                         </div>
-                </div>   
+                </div>
             </div>
         </div>
       </div>

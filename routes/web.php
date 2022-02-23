@@ -38,14 +38,14 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin', 'auth'], 'namespace
     Route::post('image/store', [AdminController::class, 'imageStore'])->name('store-image');
     Route::get('change/password', [AdminController::class, 'changePassword'])->name('change-password');
     Route::post('change/password/store', [AdminController::class, 'changePasswordStore'])->name('change-password-store');
-    
+
     //======================================Brand Routes=====================================
     Route::get('all-brands', [BrandController::class, 'index'])->name('brands');
     Route::post('brand/store', [BrandController::class, 'brandStore'])->name('brand-store');
     Route::get('/brand-edit/{brand_id}', [BrandController::class, 'edit']);
     Route::post('brand/update', [BrandController::class, 'brandUpdate'])->name('update-brand');
     Route::get('/brand-delete/{brand_id}',[BrandController::class,'delete']);
-    
+
     //====================================Category Routes===================================
     Route::get('category', [CategoryController::class, 'index'])->name('category');
     Route::post('category/store', [CategoryController::class, 'categoryStore'])->name('category-store');
@@ -83,6 +83,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin', 'auth'], 'namespace
     ->name('update-product-image');
     Route::post('product/thambnail/update', [ProductController::class, 'thambnailUpdate'])
     ->name('update-product-thambnail');
+
     Route::get('product/multiimg/delete/{id}',[ProductController::class,'multiImageDelete']);
     Route::get('product-inactive/{id}',[ProductController::class,'inactive']);
     Route::get('product-active/{id}',[ProductController::class,'active']);
@@ -110,3 +111,4 @@ Route::group(['prefix' => 'user', 'middleware' => ['user', 'auth'], 'namespace' 
 //==============================================Frontend Routes=========================================
 Route::get('english/language',[LanguageController::class,'english'])->name('english.language');
 Route::get('bangla/language',[LanguageController::class,'bangla'])->name('bangla.language');
+Route::get('animation',[LanguageController::class,'ani'])->name('animation');

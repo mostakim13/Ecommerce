@@ -30,7 +30,7 @@
                         </thead>
                         <tbody>
 
-                            @foreach ($sliders as $item)    
+                            @foreach ($sliders as $item)
                           <tr>
                             <td>
                                 <img src="{{ asset($item->image) }}" alt="" style="width: 80px;">
@@ -86,22 +86,22 @@
                                 <div class="form-group">
                                     <label class="form-control-label">Slider Title English: <span class="tx-danger">*</span></label>
                                     <input class="form-control" type="text" name="title_en" value="{{ old('title_en') }}" placeholder="Enter slider title">
-                                    
+
                                 </div>
                                 <div class="form-group">
                                   <label class="form-control-label">Slider Title Bangla: <span class="tx-danger">*</span></label>
                                   <input class="form-control" type="text" name="title_bn" value="{{ old('title_bn') }}" placeholder="Enter slider title">
-                                  
+
                               </div>
                                 <div class="form-group">
                                     <label class="form-control-label">Slider Description English: <span class="tx-danger">*</span></label>
                                     <input class="form-control" type="text" name="description_en" value="{{ old('descroption_en') }}" placeholder="Enter slider description">
-                                    
+
                                 </div>
                                 <div class="form-group">
                                   <label class="form-control-label">Slider Description Bangla: <span class="tx-danger">*</span></label>
                                   <input class="form-control" type="text" name="description_bn" value="{{ old('descroption_bn') }}" placeholder="Enter slider description">
-                                  
+
                               </div>
                                 <div class="form-group">
                                     <label class="form-control-label">Slider Image: <span class="tx-danger">*</span></label>
@@ -115,7 +115,7 @@
                                 </div><!-- form-layout-footer -->
                             </form>
                         </div>
-                </div>   
+                </div>
             </div>
         </div>
       </div>

@@ -192,7 +192,7 @@ class CategoryController extends Controller
     public function subSubCategoryUpdate(Request $request){
         $subsubcat_id = $request->id;
         Subsubcategory::findOrFail($subsubcat_id)->Update([
-            
+
             'subsubcategory_name_en' => $request->subsubcategory_name_en,
             'subsubcategory_name_bn' => $request->subsubcategory_name_bn,
             'subsubcategory_slug_en' => strtolower(str_replace(' ','-',$request->subsubcategory_name_en)),

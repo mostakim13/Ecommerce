@@ -70,7 +70,7 @@ class SliderController extends Controller
             );
             return Redirect()->route('sliders')->with($notification);
 
-                
+
         }
         else{
             Slider::findOrFail($id)->update([
@@ -93,18 +93,18 @@ class SliderController extends Controller
         $oldimg = Slider::findOrFail($id);
         unlink($oldimg->image);
         Slider::findOrFail($id)->delete();
-    
+
         $notification=array(
             'message'=>'sliderDelete Success',
             'alert-type'=>'success'
         );
         return Redirect()->back()->with($notification);
         }
-    
+
         //==========================Product Active and Inactive============================
         public function inactive($id){
             Slider::findOrFail($id)->update(['status'=>0]);
-            
+
             $notification=array(
                 'message'=>'Slider Inactivated',
                 'alert-type'=>'success'

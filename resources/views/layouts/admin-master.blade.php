@@ -77,7 +77,7 @@
                 </form>
                 </li>
 
-                                    
+
 
               </ul>
             </div><!-- dropdown-menu -->
@@ -343,10 +343,10 @@
         // $('.dataTables_length select').select2({ minimumResultsForSearch: Infinity });
 
       });
-    </script>    
+    </script>
 
 
-    
+
     <script src="{{ asset('backend') }}/lib/d3/d3.js"></script>
     <script src="{{ asset('backend') }}/lib/rickshaw/rickshaw.min.js"></script>
     <script src="{{ asset('backend') }}/lib/chart.js/Chart.js"></script>
@@ -384,7 +384,7 @@
     <script src="{{ asset('backend') }}/js/ResizeSensor.js"></script>
     <script src="{{ asset('backend') }}/js/dashboard.js"></script>
     <script src="{{ asset('backend') }}/lib/highlightjs/highlight.pack.js"></script>
-    
+
 
     <script src="{{ asset('backend') }}/lib/toastr/toastr.min.js"></script>
 
@@ -395,15 +395,15 @@
           case 'info':
           toastr.info(" {{ Session::get('message') }} ");
           break;
-      
+
           case 'success':
           toastr.success(" {{ Session::get('message') }} ");
           break;
-      
+
           case 'warning':
           toastr.warning(" {{ Session::get('message') }} ");
           break;
-      
+
           case 'error':
           toastr.error(" {{ Session::get('message') }} ");
           break;

@@ -13,7 +13,7 @@
         <a class="breadcrumb-item" href="index.html">ShopMama</a>
         <span class="breadcrumb-item active">Sub-Categories</span>
       </nav>
-  
+
         <div class="sl-pagebody">
             <div class="card pd-20 pd-sm-40">
               <h6 class="card-body-title">Update Sub-Category</h6>
@@ -28,15 +28,15 @@
                             name="category_id">
                                 <option label="Choose one"></option>
                                 @foreach ($categories as $cat)
-                                <option value="{{ $cat->id }}" {{ $cat->id == $subcategory->category_id? 'selected':'' }}>{{ ucwords($cat->category_name_en) }}</option>
+                                <option value="{{ $cat->id }}" {{ $cat->id == $subcategory->category_id? 'selected':'' }}>{{ ucwords($course->course_title) }}</option>
                                 @endforeach
                               </select>
                             @error('category_id')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
-                    </div>  
-  
+                    </div>
+
                     <div class="col-md-4">
                         <div class="form-group">
                             <label class="form-control-label">Sub-Category Name English: <span class="tx-danger">*</span></label>
@@ -45,8 +45,8 @@
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
-                    </div>  
-                  
+                    </div>
+
                   <div class="col-md-4">
                     <div class="form-group">
                         <label class="form-control-label">Sub-Category Name Bangla: <span class="tx-danger">*</span></label>
@@ -55,13 +55,13 @@
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
-                  </div> 
+                  </div>
               <div class="form-layout-footer mt-3">
                 <button class="btn btn-info mg-r-5" type="submit" style="cursor: pointer;">Update Data</button>
               </div><!-- form-layout-footer -->
             </form>
             </div>
-            </div><!-- row --> 
+            </div><!-- row -->
 
 
     </div>

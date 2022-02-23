@@ -18,7 +18,7 @@
 	<div class="container">
 		<div class="sign-in-page">
 			<div class="row">
-				<!-- Sign-in -->			
+				<!-- Sign-in -->
 <div class="col-md-6 col-sm-6 sign-in">
 	<h4 class="">Sign in</h4>
 	<p class="">Hello, Welcome to your account.</p>
@@ -53,7 +53,7 @@
 		  	<a href="{{ route('password.request') }}" class="forgot-password pull-right">Forgot your Password?</a>
 		</div>
 	  	<button type="submit" class="btn-upper btn btn-primary checkout-page-button">Login</button>
-	</form>					
+	</form>
 </div>
 <!-- Sign-in -->
 
@@ -110,9 +110,9 @@
 		</div>
 	  	<button type="submit" class="btn-upper btn btn-primary checkout-page-button">Register</button>
 	</form>
-	
-	
-</div>	
+
+
+</div>
 <!-- create a new account -->
 </div><!-- /.row -->
 </div><!-- /.sigin-in-->

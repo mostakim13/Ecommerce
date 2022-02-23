@@ -17,7 +17,7 @@
   <div class="sign-in-page">
     <div class="row">
   <div class="col-md-4">
-    
+
     @include('user.inc.sidebar')
 
   </div>
@@ -51,7 +51,7 @@
     @enderror
 </div>
 
-  
+
         <div>
             <button type="submit" class="btn btn-danger">Submit</a>
         </div>

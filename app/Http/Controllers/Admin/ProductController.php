@@ -192,24 +192,27 @@ public function thambnailUpdate(Request $request){
 //=============================MULTIPLE IMAGE UPDATE=============================
 public function multiImgUpdate(Request $request){
     $imgs = $request->multiImg;
+
     foreach ($imgs as $id => $img) {
         $imgDel = MultiImg::findOrFail($id);
         unlink($imgDel->photo_name);
-
         $make_name=hexdec(uniqid()).'.'.$img->getClientOriginalExtension();
         Image::make($img)->resize(917,1000)->save('uploads/products/multi-image/'.$make_name);
-        $uploadPath = 'uploads/products/multi-image/'.$make_name;
-        
-        MultiImg::where('id',$id)->update([
-            'photo_name' => $uploadPath,
-            'updated_at' => Carbon::now(),
-        ]);
+        $uplodPath = 'uploads/products/multi-image/'.$make_name;
+
+       MultiImg::where('id',$id)->update([
+        'photo_name' => $uplodPath,
+        'updated_at' => Carbon::now(),
+       ]);
+
     }
+
     $notification=array(
         'message'=>'Product Image Update Success',
         'alert-type'=>'success'
     );
     return Redirect()->back()->with($notification);
+
 }
 
 //============================MULTIIMAGE DELETE============================
@@ -228,7 +231,7 @@ public function multiImageDelete($id){
     //==========================Product Active and Inactive============================
     public function inactive($id){
         Product::findOrFail($id)->update(['status'=>0]);
-        
+
         $notification=array(
             'message'=>'Product Inactivated',
             'alert-type'=>'success'

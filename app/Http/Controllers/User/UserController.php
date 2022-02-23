@@ -22,7 +22,7 @@ class UserController extends Controller
             'email' => 'required',
             'phone' => 'required',
         ],[
-            'name.required' => 'Please input your name', 
+            'name.required' => 'Please input your name',
             'email.required' => 'Please input your email',
             'phone.required' => 'Please input your phone number',
         ]);
@@ -127,4 +127,6 @@ class UserController extends Controller
             return Redirect()->back()->with($notification);
             }
     }
+
+
 }

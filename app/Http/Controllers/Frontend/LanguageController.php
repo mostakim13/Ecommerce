@@ -20,4 +20,7 @@ class LanguageController extends Controller
         Session::put('language','bangla');
         return redirect()->back();
     }
+    public function ani(){
+        return view('frontend.animation');
+    }
 }

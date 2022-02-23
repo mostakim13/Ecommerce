@@ -11,11 +11,11 @@
 
     <div class="sl-pagebody">
         <div class="row row-sm">
-         
+
             <div class="col-md-4">
-  
+
                 @include('admin.profile.inc.sidebar')
-            
+
               </div>
               <div class="col-md-8">
                 <div class="card">
@@ -29,7 +29,7 @@
                         @error('image')
                         <span class="text-danger">{{$message}}</span>
                         @enderror
-                    </div>  
+                    </div>
                     <div>
                         <button type="submit" class="btn btn-danger">Upload</a>
                     </div>
@@ -37,7 +37,7 @@
                 </div>
               </div>
         </div><!-- row -->
-    </div><!-- sl-pagebody -->      
+    </div><!-- sl-pagebody -->
 </div><!-- sl-mainpanel -->
     <!-- ########## END: MAIN PANEL ########## -->
 @endsection

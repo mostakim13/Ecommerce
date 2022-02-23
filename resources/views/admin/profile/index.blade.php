@@ -50,7 +50,7 @@
             </div>
                 </div>
         </div><!-- row -->
-    </div><!-- sl-pagebody -->      
+    </div><!-- sl-pagebody -->
 </div><!-- sl-mainpanel -->
     <!-- ########## END: MAIN PANEL ########## -->
 @endsection

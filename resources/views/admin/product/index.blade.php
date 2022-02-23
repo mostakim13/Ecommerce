@@ -35,7 +35,7 @@
                         </thead>
                         <tbody>
 
-                            @foreach ($products as $item)    
+                            @foreach ($products as $item)
                           <tr>
                             <td>
                                 <img src="{{ asset($item->product_thambnail) }}" alt="" style="height: 60px; width: 60px;">
@@ -50,8 +50,8 @@
                               @php
                                 $amount =  $item->discount_price/$item->selling_price ;
                                 $discount = $amount*100;
-                               
-                      
+
+
                               @endphp
                               <span class="badge badge-pill badge-success">{{ round($discount) }}%</span>
                               @endif
