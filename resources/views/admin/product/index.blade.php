@@ -50,8 +50,6 @@
                               @php
                                 $amount =  $item->discount_price/$item->selling_price ;
                                 $discount = $amount*100;
-
-
                               @endphp
                               <span class="badge badge-pill badge-success">{{ round($discount) }}%</span>
                               @endif

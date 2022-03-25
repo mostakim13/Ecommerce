@@ -165,7 +165,7 @@
                   <div class="col-md-4">
                     <div class="form-group">
                         <label class="form-control-label">Product Color English: <span class="tx-danger">*</span></label>
-                        <input class="form-control" type="text" name="product_color_en" value="{{ old('product_color_en') }}" placeholder="Product Color Rnglish" data-role="tagsinput">
+                        <input class="form-control" type="text" name="product_color_en" value="{{ old('product_color_en') }}" placeholder="Product Color English" data-role="tagsinput">
                         @error('product_color_en')
                         <span class="text-danger">{{ $message }}</span>
                       @enderror

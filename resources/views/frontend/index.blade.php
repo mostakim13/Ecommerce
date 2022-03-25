@@ -1,5 +1,14 @@
 @extends('layouts.frontend-master')
 @section('content')
+    @php
+    function bn_price($str)
+    {
+        $en = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+        $bn = ['১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯', '০'];
+        $str = str_replace($en, $bn, $str);
+        return $str;
+    }
+    @endphp
     <div class="body-content outer-top-xs" id="top-banner-and-menu">
         <div class="container">
             <div class="row">
@@ -42,7 +51,6 @@
                                                                 </a>
                                                             @endif
 
-
                                                             @php
                                                                 $subsubcategories = App\Models\Subsubcategory::where('subcategory_id', $subcat->id)
                                                                     ->orderBy('subsubcategory_name_en', 'ASC')
@@ -60,7 +68,6 @@
                                                                         @endif
                                                                     </li>
                                                                 @endforeach
-
                                                             </ul>
                                                         </div><!-- /.col -->
                                                     @endforeach
@@ -1009,8 +1016,7 @@
                     <div id="hero">
                         <div id="owl-main" class="owl-carousel owl-inner-nav owl-ui-sm">
                             @foreach ($sliders as $slider)
-                                <div class="item"
-                                    style="background-image: url({{ asset($slider->image) }});">
+                                <div class="item" style="background-image: url({{ asset($slider->image) }});">
                                     <div class="container-fluid">
                                         <div class="caption bg-color vertical-center text-left">
                                             <div class="slider-header fadeInDown-1">Top Brands</div>
@@ -1088,13 +1094,31 @@
                     <!-- ============================================== SCROLL TABS ============================================== -->
                     <div id="product-tabs-slider" class="scroll-tabs outer-top-vs wow fadeInUp">
                         <div class="more-info-tab clearfix ">
-                            <h3 class="new-product-title pull-left">New Products</h3>
+                            <h3 class="new-product-title pull-left">
+                                @if (session()->get('language') == 'bangla')
+                                    নতুন পণ্য
+                                @else
+                                    New Products
+                                @endif
+                            </h3>
                             <ul class="nav nav-tabs nav-tab-line pull-right" id="new-products-1">
                                 <li class="active"><a data-transition-type="backSlide" href="#all"
-                                        data-toggle="tab">All</a></li>
+                                        data-toggle="tab">
+                                        @if (session()->get('language') == 'bangla')
+                                            সকল
+                                        @else
+                                            All
+                                        @endif
+                                    </a></li>
                                 @foreach ($categories as $category)
                                     <li><a data-transition-type="backSlide" href="#category{{ $category->id }}"
-                                            data-toggle="tab">{{ $category->category_name_en }}</a>
+                                            data-toggle="tab">
+                                            @if (session()->get('language') == 'bangla')
+                                                {{ $category->category_name_bn }}
+                                            @else
+                                                {{ $category->category_name_en }}
+                                            @endif
+                                        </a>
                                     </li>
                                 @endforeach
 
@@ -1119,24 +1143,73 @@
                                                                         src="{{ asset($product->product_thambnail) }}"
                                                                         alt=""></a>
                                                             </div><!-- /.image -->
+                                                            @php
+                                                                $amount = $product->discount_price / $product->selling_price;
+                                                                $discount = $amount * 100;
+                                                            @endphp
+                                                            @if ($product->discount_price == null)
+                                                                <div class="tag new"><span>
+                                                                        @if (session()->get('language') == 'bangla')
+                                                                            নতুন
+                                                                        @else
+                                                                            new
+                                                                        @endif
+                                                                    </span></div>
+                                                            @else
+                                                                <div class="tag new">
+                                                                    <span>
+                                                                        @if (session()->get('language') == 'bangla')
+                                                                            {{ bn_price(round($discount)) }}
+                                                                        @else
+                                                                            {{ round($discount) }}%
+                                                                        @endif
+                                                                    </span>
+                                                                </div>
+                                                            @endif
 
-                                                            <div class="tag new"><span>new</span></div>
                                                         </div><!-- /.product-image -->
 
 
                                                         <div class="product-info text-left">
-                                                            <h3 class="name"><a
-                                                                    href="detail.html">{{ $product->product_name_en }}</a>
+                                                            <h3 class="name"><a href="detail.html">
+                                                                    @if (session()->get('language') == 'bangla')
+                                                                        {{ $product->product_name_bn }}
+                                                                    @else
+                                                                        {{ $product->product_name_en }}
+                                                                    @endif
+                                                                </a>
                                                             </h3>
                                                             <div class="rating rateit-small"></div>
                                                             <div class="description"></div>
-@php
-    $afterDiscountPrice = $product->selling_price-$product->discount_price;
-@endphp
+                                                            @php
+                                                                $afterDiscountPrice = $product->selling_price - $product->discount_price;
+                                                            @endphp
                                                             <div class="product-price">
-                                                                <span class="price">
-                                                                    {{ $afterDiscountPrice }} </span>
-                                                                <span class="price-before-discount">{{ $product->selling_price }}</span>
+                                                                @if ($product->discount_price == null)
+                                                                    <span class="price">
+                                                                        @if (session()->get('language') == 'bangla')
+                                                                            {{ bn_price($product->selling_price) }}
+                                                                        @else
+                                                                            {{ $product->selling_price }}
+                                                                        @endif
+                                                                    </span>
+                                                                @else
+                                                                    <span class="price">
+                                                                        @if (session()->get('language') == 'bangla')
+                                                                            {{ bn_price($afterDiscountPrice) }}
+                                                                        @else
+                                                                            {{ $afterDiscountPrice }}
+                                                                        @endif
+                                                                    </span>
+                                                                    <span
+                                                                        class="price-before-discount">
+                                                                        @if (session()->get('language') == 'bangla')
+                                                                        {{ bn_price($product->selling_price) }}
+                                                                        @else
+                                                                        {{ $product->selling_price }}
+                                                                    @endif
+                                                                    </span>
+                                                                @endif
 
                                                             </div><!-- /.product-price -->
 
@@ -1151,7 +1224,13 @@
                                                                             <i class="fa fa-shopping-cart"></i>
                                                                         </button>
                                                                         <button class="btn btn-primary cart-btn"
-                                                                            type="button">Add to cart</button>
+                                                                            type="button">
+                                                                            @if (session()->get('language') == 'bangla')
+                                                                                কার্টে যোগ করুন
+                                                                            @else
+                                                                                Add to cart
+                                                                            @endif
+                                                                        </button>
 
                                                                     </li>
 
@@ -1202,24 +1281,67 @@
                                                                             src="{{ asset($product->product_thambnail) }}"
                                                                             alt=""></a>
                                                                 </div><!-- /.image -->
+                                                                @if ($product->discount_price == null)
+                                                                    <div class="tag new"><span>
+                                                                            @if (session()->get('language') == 'bangla')
+                                                                                নতুন
+                                                                            @else
+                                                                                new
+                                                                            @endif
+                                                                        </span></div>
+                                                                @else
+                                                                    <div class="tag new"><span>
+                                                                            @if (session()->get('language') == 'bangla')
+                                                                                {{ bn_price(round($discount)) }}%
+                                                                            @else
+                                                                                {{ round($discount) }}%
+                                                                            @endif
 
-                                                                <div class="tag new"><span>new</span></div>
+                                                                        </span></div>
+                                                                @endif
+
                                                             </div><!-- /.product-image -->
 
 
                                                             <div class="product-info text-left">
-                                                                <h3 class="name"><a
-                                                                        href="detail.html">{{ $product->product_name_en }}</a>
+                                                                <h3 class="name"><a href="detail.html">
+                                                                        @if (session()->get('language') == 'bangla')
+                                                                            {{ $product->product_name_bn }}
+                                                                        @else
+                                                                            {{ $product->product_name_en }}
+                                                                        @endif
+                                                                    </a>
                                                                 </h3>
                                                                 <div class="rating rateit-small"></div>
                                                                 <div class="description"></div>
-                                                                @php
-                                                                $afterDiscountPrice = $product->selling_price-$product->discount_price;
-                                                            @endphp
+
                                                                 <div class="product-price">
-                                                                    <span class="price">
-                                                                        {{ $afterDiscountPrice }} </span>
-                                                                    <span class="price-before-discount">{{ $product->selling_price }}</span>
+                                                                    @if ($product->discount_price == null)
+                                                                        <span class="price">
+                                                                            @if (session()->get('language') == 'bangla')
+                                                                            {{ bn_price($product->selling_price) }}
+                                                                            @else
+                                                                            {{ $product->selling_price }}
+                                                                            @endif
+                                                                        </span>
+                                                                    @else
+                                                                        <span class="price">
+                                                                            @if (session()->get('language') == 'bangla')
+                                                                            {{ bn_price($afterDiscountPrice) }}
+                                                                            @else
+                                                                            {{ $afterDiscountPrice }}
+                                                                        @endif
+                                                                        </span>
+                                                                        <span
+                                                                            class="price-before-discount">
+                                                                            @if (session()->get('language') == 'bangla')
+                                                                            {{ bn_price($product->selling_price) }}
+                                                                            @else
+                                                                            {{ $product->selling_price }}
+                                                                            @endif
+                                                                        </span>
+                                                                    @endif
+
 
                                                                 </div><!-- /.product-price -->
 
@@ -1234,7 +1356,13 @@
                                                                                 <i class="fa fa-shopping-cart"></i>
                                                                             </button>
                                                                             <button class="btn btn-primary cart-btn"
-                                                                                type="button">Add to cart</button>
+                                                                                type="button">
+                                                                                @if (session()->get('language') == 'bangla')
+                                                                                    কার্টে যোগ করুন
+                                                                                @else
+                                                                                    Add to cart
+                                                                                @endif
+                                                                            </button>
 
                                                                         </li>
 
