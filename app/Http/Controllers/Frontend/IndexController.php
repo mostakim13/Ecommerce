@@ -17,10 +17,11 @@ class IndexController extends Controller
         $categories = Category::orderBy('category_name_en', 'ASC')->get();
         $sliders = Slider::where('status', 1)->orderBy('id', 'DESC')->limit(5)->get();
         $products = Product::where('status', 1)->orderBy('id', 'DESC')->get();
-        return view('frontend.index', compact('categories', 'sliders', 'products'));
+        $features = Product::where('featured',1)->where('status', 1)->orderBy('id', 'DESC')->get();
+        return view('frontend.index', compact('categories', 'sliders', 'products','features'));
     }
 
-    public function singleProduct($id)
+    public function singleProduct($id, $slug)
     {
         $product = Product::findOrFail($id);
         $multiImgs = MultiImg::where('product_id',$id)->get();
