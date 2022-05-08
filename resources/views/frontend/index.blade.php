@@ -233,40 +233,74 @@ function bn_price($str)
                         <div class="owl-carousel sidebar-carousel special-offer custom-carousel owl-theme outer-top-xs">
                             <div class="item">
                                 <div class="products special-product">
-                                    <div class="product">
-                                        <div class="product-micro">
-                                            <div class="row product-micro-row">
-                                                <div class="col col-xs-5">
-                                                    <div class="product-image">
-                                                        <div class="image">
-                                                            <a href="#">
-                                                                <img src="{{ asset('frontend') }}/assets/images/products/p30.jpg"
-                                                                    alt="">
-                                                            </a>
-                                                        </div><!-- /.image -->
+                                    @foreach ($special_offers as $product)
+                                        <div class="product">
+                                            <div class="product-micro">
+                                                <div class="row product-micro-row">
+                                                    <div class="col col-xs-5">
+                                                        <div class="product-image">
+                                                            <div class="image">
+                                                                <a
+                                                                    href="{{ url('single/product/' . $product->id) }}"><img
+                                                                        src="{{ asset($product->product_thambnail) }}"
+                                                                        alt=""></a>
+                                                            </div><!-- /.image -->
 
 
 
-                                                    </div><!-- /.product-image -->
-                                                </div><!-- /.col -->
-                                                <div class="col col-xs-7">
-                                                    <div class="product-info">
-                                                        <h3 class="name"><a href="#">Floral Print Shirt</a>
-                                                        </h3>
-                                                        <div class="rating rateit-small"></div>
-                                                        <div class="product-price">
-                                                            <span class="price">
-                                                                $450.99 </span>
+                                                        </div><!-- /.product-image -->
+                                                    </div><!-- /.col -->
+                                                    <div class="col col-xs-7">
+                                                        <div class="product-info">
+                                                            <h3 class="name">
+                                                                @if (session()->get('language') == 'bangla')
+                                                                    <a
+                                                                        href="detail.html">{{ $product->product_name_bn }}</a>
+                                                                @else
+                                                                    <a
+                                                                        href="detail.html">{{ $product->product_name_en }}</a>
+                                                                @endif
+                                                            </h3>
+                                                            <div class="rating rateit-small"></div>
+                                                            @php
+                                                                $afterDiscountPrice = $product->selling_price - $product->discount_price;
+                                                            @endphp
+                                                            <div class="product-price">
+                                                                @if ($product->discount_price == null)
+                                                                    <span class="price">
+                                                                        @if (session()->get('language') == 'bangla')
+                                                                            {{ bn_price($product->selling_price) }}
+                                                                        @else
+                                                                            {{ $product->selling_price }}
+                                                                        @endif
+                                                                    </span>
+                                                                @else
+                                                                    <span class="price">
+                                                                        @if (session()->get('language') == 'bangla')
+                                                                            {{ bn_price($afterDiscountPrice) }}
+                                                                        @else
+                                                                            {{ $afterDiscountPrice }}
+                                                                        @endif
+                                                                    </span>
+                                                                    <span class="price-before-discount">
+                                                                        @if (session()->get('language') == 'bangla')
+                                                                            {{ bn_price($product->selling_price) }}
+                                                                        @else
+                                                                            {{ $product->selling_price }}
+                                                                        @endif
+                                                                    </span>
+                                                                @endif
 
-                                                        </div><!-- /.product-price -->
+                                                            </div><!-- /.product-price -->
 
-                                                    </div>
-                                                </div><!-- /.col -->
-                                            </div><!-- /.product-micro-row -->
-                                        </div><!-- /.product-micro -->
+                                                        </div>
+                                                    </div><!-- /.col -->
+                                                </div><!-- /.product-micro-row -->
+                                            </div><!-- /.product-micro -->
 
-                                    </div>
-                                    <div class="product">
+                                        </div>
+                                    @endforeach
+                                    {{-- <div class="product">
                                         <div class="product-micro">
                                             <div class="row product-micro-row">
                                                 <div class="col col-xs-5">
@@ -331,10 +365,10 @@ function bn_price($str)
                                             </div><!-- /.product-micro-row -->
                                         </div><!-- /.product-micro -->
 
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
-                            <div class="item">
+                            {{-- <div class="item">
                                 <div class="products special-product">
                                     <div class="product">
                                         <div class="product-micro">
@@ -532,7 +566,7 @@ function bn_price($str)
 
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div><!-- /.sidebar-widget-body -->
                 </div><!-- /.sidebar-widget -->
@@ -560,8 +594,7 @@ function bn_price($str)
                 <div class="sidebar-widget outer-bottom-small wow fadeInUp">
                     <h3 class="section-title">Special Deals</h3>
                     <div class="sidebar-widget-body outer-top-xs">
-                        <div
-                            class="owl-carousel sidebar-carousel special-offer custom-carousel owl-theme outer-top-xs">
+                        <div class="owl-carousel sidebar-carousel special-offer custom-carousel owl-theme outer-top-xs">
                             <div class="item">
                                 <div class="products special-product">
                                     <div class="product">
