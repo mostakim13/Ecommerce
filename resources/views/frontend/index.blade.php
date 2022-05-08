@@ -167,9 +167,11 @@ function bn_price($str)
                                     <div class="product-info text-left m-t-20">
                                         <h3 class="name">
                                             @if (session()->get('language') == 'bangla')
-                                                <a href="detail.html">{{ $product->product_name_bn }}</a>
+                                                <a
+                                                    href="{{ url('single/product/' . $product->id . '/' . $product->product_slug_bn) }}">{{ $product->product_name_bn }}</a>
                                             @else
-                                                <a href="detail.html">{{ $product->product_name_en }}</a>
+                                                <a
+                                                    href="{{ url('single/product/' . $product->id . '/' . $product->product_slug_en) }}">{{ $product->product_name_en }}</a>
                                             @endif
                                         </h3>
                                         <div class="rating rateit-small"></div>
@@ -269,10 +271,10 @@ function bn_price($str)
                                                             <h3 class="name">
                                                                 @if (session()->get('language') == 'bangla')
                                                                     <a
-                                                                        href="detail.html">{{ $product->product_name_bn }}</a>
+                                                                        href="{{ url('single/product/' . $product->id . '/' . $product->product_slug_bn) }}">{{ $product->product_name_bn }}</a>
                                                                 @else
                                                                     <a
-                                                                        href="detail.html">{{ $product->product_name_en }}</a>
+                                                                        href="{{ url('single/product/' . $product->id . '/' . $product->product_slug_en) }}">{{ $product->product_name_en }}</a>
                                                                 @endif
                                                             </h3>
                                                             <div class="rating rateit-small"></div>
@@ -322,22 +324,7 @@ function bn_price($str)
                 </div><!-- /.sidebar-widget -->
                 <!-- =================== SPECIAL OFFER : END ============================= -->
                 <!-- ====================== PRODUCT TAGS ========================= -->
-                <div class="sidebar-widget product-tag wow fadeInUp">
-                    <h3 class="section-title">Product tags</h3>
-                    <div class="sidebar-widget-body outer-top-xs">
-                        <div class="tag-list">
-                            <a class="item" title="Phone" href="category.html">Phone</a>
-                            <a class="item active" title="Vest" href="category.html">Vest</a>
-                            <a class="item" title="Smartphone" href="category.html">Smartphone</a>
-                            <a class="item" title="Furniture" href="category.html">Furniture</a>
-                            <a class="item" title="T-shirt" href="category.html">T-shirt</a>
-                            <a class="item" title="Sweatpants" href="category.html">Sweatpants</a>
-                            <a class="item" title="Sneaker" href="category.html">Sneaker</a>
-                            <a class="item" title="Toys" href="category.html">Toys</a>
-                            <a class="item" title="Rose" href="category.html">Rose</a>
-                        </div><!-- /.tag-list -->
-                    </div><!-- /.sidebar-widget-body -->
-                </div><!-- /.sidebar-widget -->
+                @include('frontend.inc.product-tags')
                 <!-- ==================== PRODUCT TAGS : END ======================= -->
                 <!-- ==================== SPECIAL DEALS ============================ -->
 
@@ -376,10 +363,10 @@ function bn_price($str)
                                                             <h3 class="name">
                                                                 @if (session()->get('language') == 'bangla')
                                                                     <a
-                                                                        href="detail.html">{{ $product->product_name_bn }}</a>
+                                                                        href="{{ url('single/product/' . $product->id . '/' . $product->product_slug_bn) }}">{{ $product->product_name_bn }}</a>
                                                                 @else
                                                                     <a
-                                                                        href="detail.html">{{ $product->product_name_en }}</a>
+                                                                        href="{{ url('single/product/' . $product->id . '/' . $product->product_slug_en) }}">{{ $product->product_name_en }}</a>
                                                                 @endif
                                                             </h3>
                                                             <div class="rating rateit-small"></div>
@@ -623,9 +610,17 @@ function bn_price($str)
                                                 <div class="product">
                                                     <div class="product-image">
                                                         <div class="image">
-                                                            <a href="{{ url('single/product/' . $product->id) }}"><img
-                                                                    src="{{ asset($product->product_thambnail) }}"
-                                                                    alt=""></a>
+                                                            @if (session()->get('language') == 'bangla')
+                                                                <a
+                                                                    href="{{ url('single/product/' . $product->id . '/' . $product->product_slug_bn) }}"><img
+                                                                        src="{{ asset($product->product_thambnail) }}"
+                                                                        alt=""></a>
+                                                            @else
+                                                                <a
+                                                                    href="{{ url('single/product/' . $product->id . '/' . $product->product_slug_en) }}"><img
+                                                                        src="{{ asset($product->product_thambnail) }}"
+                                                                        alt=""></a>
+                                                            @endif
                                                         </div><!-- /.image -->
                                                         @php
                                                             $amount = $product->discount_price / $product->selling_price;
@@ -659,10 +654,10 @@ function bn_price($str)
 
                                                             @if (session()->get('language') == 'bangla')
                                                                 <a
-                                                                    href="detail.html">{{ $product->product_name_bn }}</a>
+                                                                    href="{{ url('single/product/' . $product->id . '/' . $product->product_slug_bn) }}">{{ $product->product_name_bn }}</a>
                                                             @else
                                                                 <a
-                                                                    href="detail.html">{{ $product->product_name_en }}</a>
+                                                                    href="{{ url('single/product/' . $product->id . '/' . $product->product_slug_en) }}">{{ $product->product_name_en }}</a>
                                                             @endif
 
                                                         </h3>
@@ -763,9 +758,17 @@ function bn_price($str)
                                                     <div class="product">
                                                         <div class="product-image">
                                                             <div class="image">
-                                                                <a href="detail.html"><img
-                                                                        src="{{ asset($product->product_thambnail) }}"
-                                                                        alt=""></a>
+                                                                @if (session()->get('language') == 'bangla')
+                                                                    <a
+                                                                        href="{{ url('single/product/' . $product->id . '/' . $product->product_slug_bn) }}"><img
+                                                                            src="{{ asset($product->product_thambnail) }}"
+                                                                            alt=""></a>
+                                                                @else
+                                                                    <a
+                                                                        href="{{ url('single/product/' . $product->id . '/' . $product->product_slug_en) }}"><img
+                                                                            src="{{ asset($product->product_thambnail) }}"
+                                                                            alt=""></a>
+                                                                @endif
                                                             </div><!-- /.image -->
                                                             @php
                                                                 $amount = $product->discount_price / $product->selling_price;
