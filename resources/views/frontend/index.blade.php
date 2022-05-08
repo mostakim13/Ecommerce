@@ -894,8 +894,8 @@ function bn_price($str)
 
                     </div><!-- /.tab-content -->
                 </div><!-- /.scroll-tabs -->
-                <!-- ============================================== SCROLL TABS : END ============================================== -->
-                <!-- ============================================== WIDE PRODUCTS ============================================== -->
+                <!-- ==================== SCROLL TABS : END ========================== -->
+                <!-- ==================== WIDE PRODUCTS ========================== -->
                 <div class="wide-banners wow fadeInUp outer-bottom-xs">
                     <div class="row">
                         <div class="col-md-7 col-sm-7">
@@ -918,8 +918,8 @@ function bn_price($str)
                     </div><!-- /.row -->
                 </div><!-- /.wide-banners -->
 
-                <!-- ============================================== WIDE PRODUCTS : END ============================================== -->
-                <!-- ============================================== FEATURED PRODUCTS ============================================== -->
+                <!-- =================== WIDE PRODUCTS : END ======================= -->
+                <!-- =================== FEATURED PRODUCTS ========================= -->
                 <section class="section featured-product wow fadeInUp">
                     <h3 class="section-title">Featured products</h3>
                     <div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs">
@@ -1049,8 +1049,700 @@ function bn_price($str)
 
                     </div><!-- /.home-owl-carousel -->
                 </section><!-- /.section -->
-                <!-- ============================================== FEATURED PRODUCTS : END ============================================== -->
-                <!-- ============================================== WIDE PRODUCTS ============================================== -->
+                <!-- =================== FEATURED PRODUCTS : END ==================== -->
+
+
+                {{-- =================== Start Skip Product 0================= --}}
+                <section class="section featured-product wow fadeInUp">
+                    <h3 class="section-title">
+                        @if (session()->get('language') == 'bangla')
+                            {{ $skip_category_0->category_name_bn }}
+                        @else
+                            {{ $skip_category_0->category_name_en }}
+                        @endif
+                    </h3>
+                    <div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs">
+                        @foreach ($skip_product_0 as $product)
+                            <div class="item item-carousel">
+                                <div class="products">
+                                    <div class="product">
+                                        <div class="product-image">
+                                            <div class="image">
+                                                @if (session()->get('language') == 'bangla')
+                                                    <a
+                                                        href="{{ url('single/product/' . $product->id . '/' . $product->product_slug_bn) }}"><img
+                                                            src="{{ asset($product->product_thambnail) }}"
+                                                            alt=""></a>
+                                                @else
+                                                    <a
+                                                        href="{{ url('single/product/' . $product->id . '/' . $product->product_slug_en) }}"><img
+                                                            src="{{ asset($product->product_thambnail) }}"
+                                                            alt=""></a>
+                                                @endif
+
+                                            </div><!-- /.image -->
+
+                                            {{-- </div><!-- /.image --> --}}
+                                            @php
+                                                $amount = $product->discount_price / $product->selling_price;
+                                                $discount = $amount * 100;
+                                            @endphp
+                                            @if ($product->discount_price == null)
+                                                <div class="tag new"><span>
+                                                        @if (session()->get('language') == 'bangla')
+                                                            নতুন
+                                                        @else
+                                                            new
+                                                        @endif
+                                                    </span></div>
+                                            @else
+                                                <div class="tag new">
+                                                    <span>
+                                                        @if (session()->get('language') == 'bangla')
+                                                            {{ bn_price(round($discount)) }}%
+                                                        @else
+                                                            {{ round($discount) }}%
+                                                        @endif
+                                                    </span>
+                                                </div>
+                                            @endif
+                                        </div><!-- /.product-image -->
+
+
+                                        <div class="product-info text-left">
+                                            <h3 class="name"><a href="detail.html">
+                                                    @if (session()->get('language') == 'bangla')
+                                                        {{ $product->product_name_bn }}
+                                                    @else
+                                                        {{ $product->product_name_en }}
+                                                    @endif
+                                                </a>
+                                            </h3>
+                                            <div class="rating rateit-small"></div>
+                                            <div class="description"></div>
+
+                                            @php
+                                                $afterDiscountPrice = $product->selling_price - $product->discount_price;
+                                            @endphp
+                                            <div class="product-price">
+                                                @if ($product->discount_price == null)
+                                                    <span class="price">
+                                                        @if (session()->get('language') == 'bangla')
+                                                            {{ bn_price($product->selling_price) }}৳
+                                                        @else
+                                                            {{ $product->selling_price }}৳
+                                                        @endif
+                                                    </span>
+                                                @else
+                                                    <span class="price">
+                                                        @if (session()->get('language') == 'bangla')
+                                                            {{ bn_price($afterDiscountPrice) }}৳
+                                                        @else
+                                                            {{ $afterDiscountPrice }}৳
+                                                        @endif
+                                                    </span>
+                                                    <span class="price-before-discount">
+                                                        @if (session()->get('language') == 'bangla')
+                                                            {{ bn_price($product->selling_price) }}৳
+                                                        @else
+                                                            {{ $product->selling_price }}৳
+                                                        @endif
+                                                    </span>
+                                                @endif
+
+                                            </div><!-- /.product-price -->
+
+                                        </div><!-- /.product-info -->
+                                        <div class="cart clearfix animate-effect">
+                                            <div class="action">
+                                                <ul class="list-unstyled">
+                                                    <li class="add-cart-button btn-group">
+                                                        <button class="btn btn-primary icon" data-toggle="dropdown"
+                                                            type="button">
+                                                            <i class="fa fa-shopping-cart"></i>
+                                                        </button>
+                                                        <button class="btn btn-primary cart-btn" type="button">Add to
+                                                            cart</button>
+
+                                                    </li>
+
+                                                    <li class="lnk wishlist">
+                                                        <a class="add-to-cart" href="detail.html" title="Wishlist">
+                                                            <i class="icon fa fa-heart"></i>
+                                                        </a>
+                                                    </li>
+
+                                                    <li class="lnk">
+                                                        <a class="add-to-cart" href="detail.html" title="Compare">
+                                                            <i class="fa fa-signal" aria-hidden="true"></i>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div><!-- /.action -->
+                                        </div><!-- /.cart -->
+                                    </div><!-- /.product -->
+
+                                </div><!-- /.products -->
+                            </div><!-- /.item -->
+                        @endforeach
+
+                    </div><!-- /.home-owl-carousel -->
+                </section><!-- /.section -->
+                {{-- =================== End Skip Product 0================= --}}
+
+                {{-- =================== Start Skip Product 1================= --}}
+                <section class="section featured-product wow fadeInUp">
+                    <h3 class="section-title">
+                        @if (session()->get('language') == 'bangla')
+                            {{ $skip_category_1->category_name_bn }}
+                        @else
+                            {{ $skip_category_1->category_name_en }}
+                        @endif
+                    </h3>
+                    <div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs">
+                        @foreach ($skip_product_1 as $product)
+                            <div class="item item-carousel">
+                                <div class="products">
+                                    <div class="product">
+                                        <div class="product-image">
+                                            <div class="image">
+                                                @if (session()->get('language') == 'bangla')
+                                                    <a
+                                                        href="{{ url('single/product/' . $product->id . '/' . $product->product_slug_bn) }}"><img
+                                                            src="{{ asset($product->product_thambnail) }}"
+                                                            alt=""></a>
+                                                @else
+                                                    <a
+                                                        href="{{ url('single/product/' . $product->id . '/' . $product->product_slug_en) }}"><img
+                                                            src="{{ asset($product->product_thambnail) }}"
+                                                            alt=""></a>
+                                                @endif
+
+                                            </div><!-- /.image -->
+
+                                            {{-- </div><!-- /.image --> --}}
+                                            @php
+                                                $amount = $product->discount_price / $product->selling_price;
+                                                $discount = $amount * 100;
+                                            @endphp
+                                            @if ($product->discount_price == null)
+                                                <div class="tag new"><span>
+                                                        @if (session()->get('language') == 'bangla')
+                                                            নতুন
+                                                        @else
+                                                            new
+                                                        @endif
+                                                    </span></div>
+                                            @else
+                                                <div class="tag new">
+                                                    <span>
+                                                        @if (session()->get('language') == 'bangla')
+                                                            {{ bn_price(round($discount)) }}%
+                                                        @else
+                                                            {{ round($discount) }}%
+                                                        @endif
+                                                    </span>
+                                                </div>
+                                            @endif
+                                        </div><!-- /.product-image -->
+
+
+                                        <div class="product-info text-left">
+                                            <h3 class="name"><a href="detail.html">
+                                                    @if (session()->get('language') == 'bangla')
+                                                        {{ $product->product_name_bn }}
+                                                    @else
+                                                        {{ $product->product_name_en }}
+                                                    @endif
+                                                </a>
+                                            </h3>
+                                            <div class="rating rateit-small"></div>
+                                            <div class="description"></div>
+
+                                            @php
+                                                $afterDiscountPrice = $product->selling_price - $product->discount_price;
+                                            @endphp
+                                            <div class="product-price">
+                                                @if ($product->discount_price == null)
+                                                    <span class="price">
+                                                        @if (session()->get('language') == 'bangla')
+                                                            {{ bn_price($product->selling_price) }}৳
+                                                        @else
+                                                            {{ $product->selling_price }}৳
+                                                        @endif
+                                                    </span>
+                                                @else
+                                                    <span class="price">
+                                                        @if (session()->get('language') == 'bangla')
+                                                            {{ bn_price($afterDiscountPrice) }}৳
+                                                        @else
+                                                            {{ $afterDiscountPrice }}৳
+                                                        @endif
+                                                    </span>
+                                                    <span class="price-before-discount">
+                                                        @if (session()->get('language') == 'bangla')
+                                                            {{ bn_price($product->selling_price) }}৳
+                                                        @else
+                                                            {{ $product->selling_price }}৳
+                                                        @endif
+                                                    </span>
+                                                @endif
+
+                                            </div><!-- /.product-price -->
+
+                                        </div><!-- /.product-info -->
+                                        <div class="cart clearfix animate-effect">
+                                            <div class="action">
+                                                <ul class="list-unstyled">
+                                                    <li class="add-cart-button btn-group">
+                                                        <button class="btn btn-primary icon" data-toggle="dropdown"
+                                                            type="button">
+                                                            <i class="fa fa-shopping-cart"></i>
+                                                        </button>
+                                                        <button class="btn btn-primary cart-btn" type="button">Add to
+                                                            cart</button>
+
+                                                    </li>
+
+                                                    <li class="lnk wishlist">
+                                                        <a class="add-to-cart" href="detail.html" title="Wishlist">
+                                                            <i class="icon fa fa-heart"></i>
+                                                        </a>
+                                                    </li>
+
+                                                    <li class="lnk">
+                                                        <a class="add-to-cart" href="detail.html" title="Compare">
+                                                            <i class="fa fa-signal" aria-hidden="true"></i>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div><!-- /.action -->
+                                        </div><!-- /.cart -->
+                                    </div><!-- /.product -->
+
+                                </div><!-- /.products -->
+                            </div><!-- /.item -->
+                        @endforeach
+
+                    </div><!-- /.home-owl-carousel -->
+                </section><!-- /.section -->
+                {{-- =================== End Skip Product 1================= --}}
+
+                {{-- =================== Start Skip Product 2================= --}}
+                <section class="section featured-product wow fadeInUp">
+                    <h3 class="section-title">
+                        @if (session()->get('language') == 'bangla')
+                            {{ $skip_category_2->category_name_bn }}
+                        @else
+                            {{ $skip_category_2->category_name_en }}
+                        @endif
+                    </h3>
+                    <div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs">
+                        @foreach ($skip_product_2 as $product)
+                            <div class="item item-carousel">
+                                <div class="products">
+                                    <div class="product">
+                                        <div class="product-image">
+                                            <div class="image">
+                                                @if (session()->get('language') == 'bangla')
+                                                    <a
+                                                        href="{{ url('single/product/' . $product->id . '/' . $product->product_slug_bn) }}"><img
+                                                            src="{{ asset($product->product_thambnail) }}"
+                                                            alt=""></a>
+                                                @else
+                                                    <a
+                                                        href="{{ url('single/product/' . $product->id . '/' . $product->product_slug_en) }}"><img
+                                                            src="{{ asset($product->product_thambnail) }}"
+                                                            alt=""></a>
+                                                @endif
+
+                                            </div><!-- /.image -->
+
+                                            {{-- </div><!-- /.image --> --}}
+                                            @php
+                                                $amount = $product->discount_price / $product->selling_price;
+                                                $discount = $amount * 100;
+                                            @endphp
+                                            @if ($product->discount_price == null)
+                                                <div class="tag new"><span>
+                                                        @if (session()->get('language') == 'bangla')
+                                                            নতুন
+                                                        @else
+                                                            new
+                                                        @endif
+                                                    </span></div>
+                                            @else
+                                                <div class="tag new">
+                                                    <span>
+                                                        @if (session()->get('language') == 'bangla')
+                                                            {{ bn_price(round($discount)) }}%
+                                                        @else
+                                                            {{ round($discount) }}%
+                                                        @endif
+                                                    </span>
+                                                </div>
+                                            @endif
+                                        </div><!-- /.product-image -->
+
+
+                                        <div class="product-info text-left">
+                                            <h3 class="name"><a href="detail.html">
+                                                    @if (session()->get('language') == 'bangla')
+                                                        {{ $product->product_name_bn }}
+                                                    @else
+                                                        {{ $product->product_name_en }}
+                                                    @endif
+                                                </a>
+                                            </h3>
+                                            <div class="rating rateit-small"></div>
+                                            <div class="description"></div>
+
+                                            @php
+                                                $afterDiscountPrice = $product->selling_price - $product->discount_price;
+                                            @endphp
+                                            <div class="product-price">
+                                                @if ($product->discount_price == null)
+                                                    <span class="price">
+                                                        @if (session()->get('language') == 'bangla')
+                                                            {{ bn_price($product->selling_price) }}৳
+                                                        @else
+                                                            {{ $product->selling_price }}৳
+                                                        @endif
+                                                    </span>
+                                                @else
+                                                    <span class="price">
+                                                        @if (session()->get('language') == 'bangla')
+                                                            {{ bn_price($afterDiscountPrice) }}৳
+                                                        @else
+                                                            {{ $afterDiscountPrice }}৳
+                                                        @endif
+                                                    </span>
+                                                    <span class="price-before-discount">
+                                                        @if (session()->get('language') == 'bangla')
+                                                            {{ bn_price($product->selling_price) }}৳
+                                                        @else
+                                                            {{ $product->selling_price }}৳
+                                                        @endif
+                                                    </span>
+                                                @endif
+
+                                            </div><!-- /.product-price -->
+
+                                        </div><!-- /.product-info -->
+                                        <div class="cart clearfix animate-effect">
+                                            <div class="action">
+                                                <ul class="list-unstyled">
+                                                    <li class="add-cart-button btn-group">
+                                                        <button class="btn btn-primary icon" data-toggle="dropdown"
+                                                            type="button">
+                                                            <i class="fa fa-shopping-cart"></i>
+                                                        </button>
+                                                        <button class="btn btn-primary cart-btn" type="button">Add to
+                                                            cart</button>
+
+                                                    </li>
+
+                                                    <li class="lnk wishlist">
+                                                        <a class="add-to-cart" href="detail.html" title="Wishlist">
+                                                            <i class="icon fa fa-heart"></i>
+                                                        </a>
+                                                    </li>
+
+                                                    <li class="lnk">
+                                                        <a class="add-to-cart" href="detail.html" title="Compare">
+                                                            <i class="fa fa-signal" aria-hidden="true"></i>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div><!-- /.action -->
+                                        </div><!-- /.cart -->
+                                    </div><!-- /.product -->
+
+                                </div><!-- /.products -->
+                            </div><!-- /.item -->
+                        @endforeach
+
+                    </div><!-- /.home-owl-carousel -->
+                </section><!-- /.section -->
+                {{-- =================== End Skip Product 2================= --}}
+
+                {{-- =================== Start Skip Brand Product 0================= --}}
+                <section class="section featured-product wow fadeInUp">
+                    <h3 class="section-title">
+                        @if (session()->get('language') == 'bangla')
+                            {{ $skip_brand_0->brand_name_bn }}
+                        @else
+                            {{ $skip_brand_0->brand_name_en }}
+                        @endif
+                    </h3>
+                    <div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs">
+                        @foreach ($skip_product_brand_0 as $product)
+                            <div class="item item-carousel">
+                                <div class="products">
+                                    <div class="product">
+                                        <div class="product-image">
+                                            <div class="image">
+                                                @if (session()->get('language') == 'bangla')
+                                                    <a
+                                                        href="{{ url('single/product/' . $product->id . '/' . $product->product_slug_bn) }}"><img
+                                                            src="{{ asset($product->product_thambnail) }}"
+                                                            alt=""></a>
+                                                @else
+                                                    <a
+                                                        href="{{ url('single/product/' . $product->id . '/' . $product->product_slug_en) }}"><img
+                                                            src="{{ asset($product->product_thambnail) }}"
+                                                            alt=""></a>
+                                                @endif
+
+                                            </div><!-- /.image -->
+
+                                            {{-- </div><!-- /.image --> --}}
+                                            @php
+                                                $amount = $product->discount_price / $product->selling_price;
+                                                $discount = $amount * 100;
+                                            @endphp
+                                            @if ($product->discount_price == null)
+                                                <div class="tag new"><span>
+                                                        @if (session()->get('language') == 'bangla')
+                                                            নতুন
+                                                        @else
+                                                            new
+                                                        @endif
+                                                    </span></div>
+                                            @else
+                                                <div class="tag new">
+                                                    <span>
+                                                        @if (session()->get('language') == 'bangla')
+                                                            {{ bn_price(round($discount)) }}%
+                                                        @else
+                                                            {{ round($discount) }}%
+                                                        @endif
+                                                    </span>
+                                                </div>
+                                            @endif
+                                        </div><!-- /.product-image -->
+
+
+                                        <div class="product-info text-left">
+                                            <h3 class="name"><a href="detail.html">
+                                                    @if (session()->get('language') == 'bangla')
+                                                        {{ $product->product_name_bn }}
+                                                    @else
+                                                        {{ $product->product_name_en }}
+                                                    @endif
+                                                </a>
+                                            </h3>
+                                            <div class="rating rateit-small"></div>
+                                            <div class="description"></div>
+
+                                            @php
+                                                $afterDiscountPrice = $product->selling_price - $product->discount_price;
+                                            @endphp
+                                            <div class="product-price">
+                                                @if ($product->discount_price == null)
+                                                    <span class="price">
+                                                        @if (session()->get('language') == 'bangla')
+                                                            {{ bn_price($product->selling_price) }}৳
+                                                        @else
+                                                            {{ $product->selling_price }}৳
+                                                        @endif
+                                                    </span>
+                                                @else
+                                                    <span class="price">
+                                                        @if (session()->get('language') == 'bangla')
+                                                            {{ bn_price($afterDiscountPrice) }}৳
+                                                        @else
+                                                            {{ $afterDiscountPrice }}৳
+                                                        @endif
+                                                    </span>
+                                                    <span class="price-before-discount">
+                                                        @if (session()->get('language') == 'bangla')
+                                                            {{ bn_price($product->selling_price) }}৳
+                                                        @else
+                                                            {{ $product->selling_price }}৳
+                                                        @endif
+                                                    </span>
+                                                @endif
+
+                                            </div><!-- /.product-price -->
+
+                                        </div><!-- /.product-info -->
+                                        <div class="cart clearfix animate-effect">
+                                            <div class="action">
+                                                <ul class="list-unstyled">
+                                                    <li class="add-cart-button btn-group">
+                                                        <button class="btn btn-primary icon" data-toggle="dropdown"
+                                                            type="button">
+                                                            <i class="fa fa-shopping-cart"></i>
+                                                        </button>
+                                                        <button class="btn btn-primary cart-btn" type="button">Add to
+                                                            cart</button>
+
+                                                    </li>
+
+                                                    <li class="lnk wishlist">
+                                                        <a class="add-to-cart" href="detail.html" title="Wishlist">
+                                                            <i class="icon fa fa-heart"></i>
+                                                        </a>
+                                                    </li>
+
+                                                    <li class="lnk">
+                                                        <a class="add-to-cart" href="detail.html" title="Compare">
+                                                            <i class="fa fa-signal" aria-hidden="true"></i>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div><!-- /.action -->
+                                        </div><!-- /.cart -->
+                                    </div><!-- /.product -->
+
+                                </div><!-- /.products -->
+                            </div><!-- /.item -->
+                        @endforeach
+
+                    </div><!-- /.home-owl-carousel -->
+                </section><!-- /.section -->
+                {{-- =================== End Skip Brand Product 0================= --}}
+
+                {{-- =================== Start Skip Brand Product 1================= --}}
+                <section class="section featured-product wow fadeInUp">
+                    <h3 class="section-title">
+                        @if (session()->get('language') == 'bangla')
+                            {{ $skip_brand_1->brand_name_bn }}
+                        @else
+                            {{ $skip_brand_1->brand_name_en }}
+                        @endif
+                    </h3>
+                    <div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs">
+                        @foreach ($skip_product_brand_1 as $product)
+                            <div class="item item-carousel">
+                                <div class="products">
+                                    <div class="product">
+                                        <div class="product-image">
+                                            <div class="image">
+                                                @if (session()->get('language') == 'bangla')
+                                                    <a
+                                                        href="{{ url('single/product/' . $product->id . '/' . $product->product_slug_bn) }}"><img
+                                                            src="{{ asset($product->product_thambnail) }}"
+                                                            alt=""></a>
+                                                @else
+                                                    <a
+                                                        href="{{ url('single/product/' . $product->id . '/' . $product->product_slug_en) }}"><img
+                                                            src="{{ asset($product->product_thambnail) }}"
+                                                            alt=""></a>
+                                                @endif
+
+                                            </div><!-- /.image -->
+
+                                            {{-- </div><!-- /.image --> --}}
+                                            @php
+                                                $amount = $product->discount_price / $product->selling_price;
+                                                $discount = $amount * 100;
+                                            @endphp
+                                            @if ($product->discount_price == null)
+                                                <div class="tag new"><span>
+                                                        @if (session()->get('language') == 'bangla')
+                                                            নতুন
+                                                        @else
+                                                            new
+                                                        @endif
+                                                    </span></div>
+                                            @else
+                                                <div class="tag new">
+                                                    <span>
+                                                        @if (session()->get('language') == 'bangla')
+                                                            {{ bn_price(round($discount)) }}%
+                                                        @else
+                                                            {{ round($discount) }}%
+                                                        @endif
+                                                    </span>
+                                                </div>
+                                            @endif
+                                        </div><!-- /.product-image -->
+
+
+                                        <div class="product-info text-left">
+                                            <h3 class="name"><a href="detail.html">
+                                                    @if (session()->get('language') == 'bangla')
+                                                        {{ $product->product_name_bn }}
+                                                    @else
+                                                        {{ $product->product_name_en }}
+                                                    @endif
+                                                </a>
+                                            </h3>
+                                            <div class="rating rateit-small"></div>
+                                            <div class="description"></div>
+
+                                            @php
+                                                $afterDiscountPrice = $product->selling_price - $product->discount_price;
+                                            @endphp
+                                            <div class="product-price">
+                                                @if ($product->discount_price == null)
+                                                    <span class="price">
+                                                        @if (session()->get('language') == 'bangla')
+                                                            {{ bn_price($product->selling_price) }}৳
+                                                        @else
+                                                            {{ $product->selling_price }}৳
+                                                        @endif
+                                                    </span>
+                                                @else
+                                                    <span class="price">
+                                                        @if (session()->get('language') == 'bangla')
+                                                            {{ bn_price($afterDiscountPrice) }}৳
+                                                        @else
+                                                            {{ $afterDiscountPrice }}৳
+                                                        @endif
+                                                    </span>
+                                                    <span class="price-before-discount">
+                                                        @if (session()->get('language') == 'bangla')
+                                                            {{ bn_price($product->selling_price) }}৳
+                                                        @else
+                                                            {{ $product->selling_price }}৳
+                                                        @endif
+                                                    </span>
+                                                @endif
+
+                                            </div><!-- /.product-price -->
+
+                                        </div><!-- /.product-info -->
+                                        <div class="cart clearfix animate-effect">
+                                            <div class="action">
+                                                <ul class="list-unstyled">
+                                                    <li class="add-cart-button btn-group">
+                                                        <button class="btn btn-primary icon" data-toggle="dropdown"
+                                                            type="button">
+                                                            <i class="fa fa-shopping-cart"></i>
+                                                        </button>
+                                                        <button class="btn btn-primary cart-btn" type="button">Add to
+                                                            cart</button>
+
+                                                    </li>
+
+                                                    <li class="lnk wishlist">
+                                                        <a class="add-to-cart" href="detail.html" title="Wishlist">
+                                                            <i class="icon fa fa-heart"></i>
+                                                        </a>
+                                                    </li>
+
+                                                    <li class="lnk">
+                                                        <a class="add-to-cart" href="detail.html" title="Compare">
+                                                            <i class="fa fa-signal" aria-hidden="true"></i>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div><!-- /.action -->
+                                        </div><!-- /.cart -->
+                                    </div><!-- /.product -->
+
+                                </div><!-- /.products -->
+                            </div><!-- /.item -->
+                        @endforeach
+
+                    </div><!-- /.home-owl-carousel -->
+                </section><!-- /.section -->
+                {{-- =================== End Skip Brand Product 1================= --}}
+
+                <!-- =================== WIDE PRODUCTS ====================== -->
                 <div class="wide-banners wow fadeInUp outer-bottom-xs">
                     <div class="row">
 
@@ -1074,8 +1766,8 @@ function bn_price($str)
 
                     </div><!-- /.row -->
                 </div><!-- /.wide-banners -->
-                <!-- ============================================== WIDE PRODUCTS : END ============================================== -->
-                <!-- ============================================== BEST SELLER ============================================== -->
+                <!-- ======================= WIDE PRODUCTS : END ======================== -->
+                <!-- ======================= BEST SELLER ================================ -->
 
                 <div class="best-deal wow fadeInUp outer-bottom-xs">
                     <h3 class="section-title">Best seller</h3>
