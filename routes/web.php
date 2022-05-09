@@ -113,3 +113,7 @@ Route::get('english/language', [LanguageController::class, 'english'])->name('en
 Route::get('bangla/language', [LanguageController::class, 'bangla'])->name('bangla.language');
 Route::get('animation', [LanguageController::class, 'ani'])->name('animation');
 Route::get('single/product/{id}/{slug}', [IndexController::class, 'singleProduct']);
+
+
+//===================================Product Tags===================================
+Route::get('product/tag/{tag}', [IndexController::class, 'tagWiseProduct']);

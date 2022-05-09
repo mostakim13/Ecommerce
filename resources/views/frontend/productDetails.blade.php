@@ -459,7 +459,7 @@ function bn_price($str)
                                                     @if (session()->get('language') == 'bangla')
                                                         {{ bn_price($product->selling_price) }}৳
                                                     @else
-                                                    {{ $product->selling_price }}৳
+                                                        {{ $product->selling_price }}৳
                                                     @endif
                                                 </span>
                                             </div>
