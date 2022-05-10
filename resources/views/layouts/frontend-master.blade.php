@@ -42,12 +42,12 @@
 </head>
 
 <body class="cnt-home">
-    <!-- ============================================== HEADER ============================================== -->
+    <!-- =========================== HEADER ============================ -->
     <header class="header-style-1">
 
 
 
-        <!-- ============================================== TOP MENU ============================================== -->
+        <!-- ================= TOP MENU ========================== -->
         <div class="top-bar animate-dropdown">
             <div class="container">
                 <div class="header-top-inner">
@@ -94,7 +94,9 @@
                                 <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown"><span
                                         class="value">
                                         @if (session()->get('language') == 'bangla')
-                                        ভাষা পরিবর্তন করুন @else Language
+                                            ভাষা পরিবর্তন করুন
+                                        @else
+                                            Language
                                         @endif
                                     </span><b class="caret"></b></a>
                                 <ul class="dropdown-menu">
@@ -114,12 +116,12 @@
                 </div><!-- /.header-top-inner -->
             </div><!-- /.container -->
         </div><!-- /.header-top -->
-        <!-- ============================================== TOP MENU : END ============================================== -->
+        <!-- ================== TOP MENU : END ===================== -->
         <div class="main-header">
             <div class="container">
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-3 logo-holder">
-                        <!-- ============================================================= LOGO ============================================================= -->
+                        <!-- ===================== LOGO ========================= -->
                         <div class="logo">
                             <a href="{{ url('/') }}">
 
@@ -127,12 +129,12 @@
 
                             </a>
                         </div><!-- /.logo -->
-                        <!-- ============================================================= LOGO : END ============================================================= -->
+                        <!-- ===================== LOGO : END ============================ -->
                     </div><!-- /.logo-holder -->
 
                     <div class="col-xs-12 col-sm-12 col-md-7 top-search-holder">
                         <!-- /.contact-row -->
-                        <!-- ============================================================= SEARCH AREA ============================================================= -->
+                        <!-- ======================= SEARCH AREA ============== -->
                         <div class="search-area">
                             <form>
                                 <div class="control-group">
@@ -165,11 +167,11 @@
                                 </div>
                             </form>
                         </div><!-- /.search-area -->
-                        <!-- ============================================================= SEARCH AREA : END ============================================================= -->
+                        <!-- ================= SEARCH AREA : END ===================== -->
                     </div><!-- /.top-search-holder -->
 
                     <div class="col-xs-12 col-sm-12 col-md-2 animate-dropdown top-cart-row">
-                        <!-- ============================================================= SHOPPING CART DROPDOWN ============================================================= -->
+                        <!-- ================ SHOPPING CART DROPDOWN ====================== -->
 
                         <div class="dropdown dropdown-cart">
                             <a href="#" class="dropdown-toggle lnk-cart" data-toggle="dropdown">
@@ -232,7 +234,7 @@
                             </ul><!-- /.dropdown-menu-->
                         </div><!-- /.dropdown-cart -->
 
-                        <!-- ============================================================= SHOPPING CART DROPDOWN : END============================================================= -->
+                        <!-- ================ SHOPPING CART DROPDOWN : END============= -->
                     </div><!-- /.top-cart-row -->
                 </div><!-- /.row -->
 
@@ -240,7 +242,7 @@
 
         </div><!-- /.main-header -->
 
-        <!-- ============================================== NAVBAR ============================================== -->
+        <!-- ======================== NAVBAR ============================ -->
         <div class="header-nav animate-dropdown">
             <div class="container">
                 <div class="yamm navbar navbar-default" role="navigation">
@@ -259,7 +261,13 @@
                                 <ul class="nav navbar-nav">
                                     <li class="active dropdown yamm-fw">
                                         <a href="home.html" data-hover="dropdown" class="dropdown-toggle"
-                                            data-toggle="dropdown">@if (session()->get('language') == 'bangla') হোম @else Home @endif</a>
+                                            data-toggle="dropdown">
+                                            @if (session()->get('language') == 'bangla')
+                                                হোম
+                                            @else
+                                                Home
+                                            @endif
+                                        </a>
 
                                     </li>
                                     @php
@@ -269,46 +277,52 @@
                                     @foreach ($categories as $category)
                                         <li class="dropdown yamm mega-menu">
                                             @if (session()->get('language') == 'bangla')
-                                            <a href="home.html" data-hover="dropdown" class="dropdown-toggle"
-                                            data-toggle="dropdown">{{ $category->category_name_bn }}</a>
+                                                <a href="home.html" data-hover="dropdown" class="dropdown-toggle"
+                                                    data-toggle="dropdown">{{ $category->category_name_bn }}</a>
                                             @else
-                                            <a href="home.html" data-hover="dropdown" class="dropdown-toggle"
-                                                data-toggle="dropdown">{{ $category->category_name_en }}</a>
-                                                @endif
+                                                <a href="home.html" data-hover="dropdown" class="dropdown-toggle"
+                                                    data-toggle="dropdown">{{ $category->category_name_en }}</a>
+                                            @endif
                                             <ul class="dropdown-menu container">
                                                 <li>
                                                     <div class="yamm-content ">
                                                         <div class="row">
                                                             @php
-                                                                $subcategories = App\Models\Subcategory::where('category_id',$category->id)->orderBy('subcategory_name_en', 'ASC')->get();
+                                                                $subcategories = App\Models\Subcategory::where('category_id', $category->id)
+                                                                    ->orderBy('subcategory_name_en', 'ASC')
+                                                                    ->get();
                                                             @endphp
 
                                                             @foreach ($subcategories as $subcategory)
                                                                 <div class="col-xs-12 col-sm-6 col-md-2 col-menu">
                                                                     @if (session()->get('language') == 'bangla')
-                                                                    <a href="">
-                                                                        <h2 class="title">
-                                                                            {{ $subcategory->subcategory_name_bn }}
-                                                                        </h2>
-                                                                    </a>
+                                                                        <a href="">
+                                                                            <h2 class="title">
+                                                                                {{ $subcategory->subcategory_name_bn }}
+                                                                            </h2>
+                                                                        </a>
                                                                     @else
-                                                                    <a href="">
-                                                                        <h2 class="title">
-                                                                            {{ $subcategory->subcategory_name_en }}
-                                                                        </h2>
-                                                                    </a>
+                                                                        <a href="">
+                                                                            <h2 class="title">
+                                                                                {{ $subcategory->subcategory_name_en }}
+                                                                            </h2>
+                                                                        </a>
                                                                     @endif
                                                                     @php
-                                                                        $subsubcategories = App\Models\Subsubcategory::where('subcategory_id',$subcategory->id)->orderBy('subsubcategory_name_en', 'ASC')->get();
+                                                                        $subsubcategories = App\Models\Subsubcategory::where('subcategory_id', $subcategory->id)
+                                                                            ->orderBy('subsubcategory_name_en', 'ASC')
+                                                                            ->get();
                                                                     @endphp
 
                                                                     <ul class="links">
                                                                         @foreach ($subsubcategories as $subsubcategory)
                                                                             <li>
                                                                                 @if (session()->get('language') == 'bangla')
-                                                                                <a href="#">{{ $subsubcategory->subsubcategory_name_bn }}</a>
+                                                                                    <a
+                                                                                        href="#">{{ $subsubcategory->subsubcategory_name_bn }}</a>
                                                                                 @else
-                                                                                <a href="#">{{ $subsubcategory->subsubcategory_name_en }}</a>
+                                                                                    <a
+                                                                                        href="#">{{ $subsubcategory->subsubcategory_name_en }}</a>
                                                                                 @endif
                                                                             </li>
                                                                         @endforeach
@@ -319,7 +333,8 @@
                                                             <div
                                                                 class="col-xs-12 col-sm-6 col-md-4 col-menu banner-image">
                                                                 <img class="img-responsive"
-                                                                    src="{{ asset('frontend') }}/assets/images/banners/top-menu-banner.jpg" alt="">
+                                                                    src="{{ asset('frontend') }}/assets/images/banners/top-menu-banner.jpg"
+                                                                    alt="">
                                                             </div><!-- /.yamm-content -->
                                                         </div>
                                                     </div>
@@ -328,13 +343,6 @@
                                             </ul>
                                         </li>
                                     @endforeach
-
-
-
-
-
-
-
 
                                     <li class="dropdown  navbar-right special-menu">
                                         <a href="#">Todays offer</a>
@@ -352,23 +360,24 @@
             </div><!-- /.container-class -->
 
         </div><!-- /.header-nav -->
-        <!-- ============================================== NAVBAR : END ============================================== -->
+        <!-- ====================== NAVBAR : END ============================ -->
 
     </header>
 
-    <!-- ============================================== HEADER : END ============================================== -->
+    <!-- ================== HEADER : END ============================ -->
     @yield('content')
-    <!-- ============================================== BRANDS CAROUSEL ============================================== -->
+    <!-- ================= BRANDS CAROUSEL ===================== -->
     {{-- ================Brands================ --}}
     @include('frontend.inc.brand')
-    <!-- ============================================== BRANDS CAROUSEL : END ============================================== -->
+    <!-- ==================== BRANDS CAROUSEL : END ====================== -->
     </div><!-- /.container -->
     </div><!-- /#top-banner-and-menu -->
 
+    {{-- Add to cart modal --}}
+    @include('frontend.modals.cartModal')
 
 
-
-    <!-- ============================================================= FOOTER ============================================================= -->
+    <!-- ========================== FOOTER ============================= -->
     <footer id="footer" class="footer color-bg">
 
 
@@ -503,7 +512,7 @@
             </div>
         </div>
     </footer>
-    <!-- ============================================================= FOOTER : END============================================================= -->
+    <!-- ======================== FOOTER : END=================================== -->
 
 
     <!-- For demo purposes – can be removed on production -->
@@ -533,23 +542,23 @@
 
     <script>
         @if (Session::has('message'))
-            var type ="{{ Session::get('alert-type', 'info') }}"
-            switch(type){
-            case 'info':
-            toastr.info(" {{ Session::get('message') }} ");
-            break;
+            var type = "{{ Session::get('alert-type', 'info') }}"
+            switch (type) {
+                case 'info':
+                    toastr.info(" {{ Session::get('message') }} ");
+                    break;
 
-            case 'success':
-            toastr.success(" {{ Session::get('message') }} ");
-            break;
+                case 'success':
+                    toastr.success(" {{ Session::get('message') }} ");
+                    break;
 
-            case 'warning':
-            toastr.warning(" {{ Session::get('message') }} ");
-            break;
+                case 'warning':
+                    toastr.warning(" {{ Session::get('message') }} ");
+                    break;
 
-            case 'error':
-            toastr.error(" {{ Session::get('message') }} ");
-            break;
+                case 'error':
+                    toastr.error(" {{ Session::get('message') }} ");
+                    break;
             }
         @endif
     </script>

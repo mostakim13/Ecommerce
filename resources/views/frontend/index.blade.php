@@ -783,12 +783,19 @@ function bn_price($str)
                                             <div class="action">
                                                 <ul class="list-unstyled">
                                                     <li class="add-cart-button btn-group">
-                                                        <button class="btn btn-primary icon" data-toggle="dropdown"
-                                                            type="button">
+                                                        <button class="btn btn-primary icon" type="button"
+                                                            data-toggle="modal" data-target="#cartModal">
                                                             <i class="fa fa-shopping-cart"></i>
                                                         </button>
-                                                        <button class="btn btn-primary cart-btn" type="button">Add to
-                                                            cart</button>
+
+                                                        <button class="btn btn-primary cart-btn" type="button">
+                                                            @if (session()->get('language') == 'bangla')
+                                                                কার্টে যোগ করুন
+                                                            @else
+                                                                Add to
+                                                                cart
+                                                            @endif
+                                                        </button>
 
                                                     </li>
 
@@ -804,6 +811,7 @@ function bn_price($str)
                                                         </a>
                                                     </li>
                                                 </ul>
+
                                             </div><!-- /.action -->
                                         </div><!-- /.cart -->
                                     </div><!-- /.product -->

@@ -19,7 +19,6 @@ class IndexController extends Controller
         $sliders = Slider::where('status', 1)->orderBy('id', 'DESC')->limit(5)->get();
         $products = Product::where('status', 1)->orderBy('id', 'DESC')->get();
         $features = Product::where('featured', 1)->where('status', 1)->orderBy('id', 'DESC')->get();
-        // $hot_deals = Product::where('hot_deals', 1)->where('status', 1)->where('discount_price', '!=', NULL)->orderBy('id', 'DESC')->get();
         $special_offers = Product::where('special_offer', 1)->where('status', 1)->orderBy('id', 'DESC')->get();
         $special_deals = Product::where('special_deals', 1)->where('status', 1)->orderBy('id', 'DESC')->get();
         $skip_category_0 = Category::skip(0)->first();
@@ -37,7 +36,7 @@ class IndexController extends Controller
         $skip_product_brand_1 = Product::where('status', 1)->where('brand_id', $skip_brand_1->id)->orderBy('id', 'DESC')->get();
 
 
-        return view('frontend.index', compact('categories', 'sliders', 'products', 'features', 'hot_deals', 'special_offers', 'special_deals', 'skip_category_0', 'skip_product_0', 'skip_category_1', 'skip_product_1', 'skip_category_2', 'skip_product_2', 'skip_brand_0', 'skip_product_brand_0', 'skip_brand_1', 'skip_product_brand_1'));
+        return view('frontend.index', compact('categories', 'sliders', 'products', 'features', 'special_offers', 'special_deals', 'skip_category_0', 'skip_product_0', 'skip_category_1', 'skip_product_1', 'skip_category_2', 'skip_product_2', 'skip_brand_0', 'skip_product_brand_0', 'skip_brand_1', 'skip_product_brand_1'));
     }
 
     //product details
