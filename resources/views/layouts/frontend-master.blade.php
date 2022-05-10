@@ -7,6 +7,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="description" content="">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="author" content="">
     <meta name="keywords" content="MediaCenter, Template, eCommerce">
     <meta name="robots" content="all">
@@ -561,6 +562,26 @@
                     break;
             }
         @endif
+    </script>
+
+    <script type="text/javascript">
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $("meta[name='csrf-token']").attr("content")
+            }
+        })
+
+        function productView(id) {
+            $.ajax({
+                type: 'GET',
+                url: 'product/view/modal/' + id,
+                dataType: 'json',
+                success: function(data) {
+                    console.log(data);
+                }
+            })
+        }
+        productView();
     </script>
 
 

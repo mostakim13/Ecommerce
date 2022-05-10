@@ -784,6 +784,7 @@ function bn_price($str)
                                                 <ul class="list-unstyled">
                                                     <li class="add-cart-button btn-group">
                                                         <button class="btn btn-primary icon" type="button"
+                                                            id="{{ $product->id }}" onclick="productView(this.id)"
                                                             data-toggle="modal" data-target="#cartModal">
                                                             <i class="fa fa-shopping-cart"></i>
                                                         </button>
