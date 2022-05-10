@@ -60,6 +60,14 @@ class IndexController extends Controller
     {
         $categories = Category::orderBy('category_name_en', 'ASC')->get();
         $products = Product::where('status', 1)->where('subcategory_id', $subcat_id)->orderBy('id', "DESC")->paginate(1);
-        return view('frontend.category-product', compact('products', 'categories'));
+        return view('frontend.subCategory-product', compact('products', 'categories'));
+    }
+
+    //subsubcategory wise product show
+    public function subSubCatWiseProduct($subsubcat_id, $slug)
+    {
+        $categories = Category::orderBy('category_name_en', 'ASC')->get();
+        $products = Product::where('status', 1)->where('subsubcategory_id', $subsubcat_id)->orderBy('id', "DESC")->paginate(1);
+        return view('frontend.subSubCategory-product', compact('products', 'categories'));
     }
 }

@@ -47,9 +47,11 @@ $categories = App\Models\Category::orderBy('category_name_en', 'ASC')->get();
                                             @foreach ($subsubcategories as $subsubcat)
                                                 <li>
                                                     @if (session()->get('language') == 'bangla')
-                                                        <a href="#">{{ $subsubcat->subsubcategory_name_bn }}</a>
+                                                        <a
+                                                            href="{{ url('sub/subcategory/product/' . $subsubcat->id . '/' . $subsubcat->subsubcategory_slug_bn) }}">{{ $subsubcat->subsubcategory_name_bn }}</a>
                                                     @else
-                                                        <a href="#">{{ $subsubcat->subsubcategory_name_en }}</a>
+                                                        <a
+                                                            href="{{ url('sub/subcategory/product/' . $subsubcat->id . '/' . $subsubcat->subsubcategory_slug_en) }}">{{ $subsubcat->subsubcategory_name_en }}</a>
                                                     @endif
                                                 </li>
                                             @endforeach

@@ -120,3 +120,6 @@ Route::get('product/tag/{tag}', [IndexController::class, 'tagWiseProduct']);
 
 //===========================subcat wise product show==========================
 Route::get('subcategory/product/{subcat_id}/{slug}', [IndexController::class, 'subcatWiseProduct']);
+
+//===========================subsubcat wise product show==========================
+Route::get('sub/subcategory/product/{subsubcat_id}/{slug}', [IndexController::class, 'subSubCatWiseProduct']);
