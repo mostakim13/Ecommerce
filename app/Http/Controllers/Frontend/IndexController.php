@@ -19,7 +19,7 @@ class IndexController extends Controller
         $sliders = Slider::where('status', 1)->orderBy('id', 'DESC')->limit(5)->get();
         $products = Product::where('status', 1)->orderBy('id', 'DESC')->get();
         $features = Product::where('featured', 1)->where('status', 1)->orderBy('id', 'DESC')->get();
-        $hot_deals = Product::where('hot_deals', 1)->where('status', 1)->where('discount_price', '!=', NULL)->orderBy('id', 'DESC')->get();
+        // $hot_deals = Product::where('hot_deals', 1)->where('status', 1)->where('discount_price', '!=', NULL)->orderBy('id', 'DESC')->get();
         $special_offers = Product::where('special_offer', 1)->where('status', 1)->orderBy('id', 'DESC')->get();
         $special_deals = Product::where('special_deals', 1)->where('status', 1)->orderBy('id', 'DESC')->get();
         $skip_category_0 = Category::skip(0)->first();
@@ -40,11 +40,26 @@ class IndexController extends Controller
         return view('frontend.index', compact('categories', 'sliders', 'products', 'features', 'hot_deals', 'special_offers', 'special_deals', 'skip_category_0', 'skip_product_0', 'skip_category_1', 'skip_product_1', 'skip_category_2', 'skip_product_2', 'skip_brand_0', 'skip_product_brand_0', 'skip_brand_1', 'skip_product_brand_1'));
     }
 
-    public function singleProduct($id, $slug)
+    //product details
+    public function singleProduct($product_id, $slug)
     {
-        $product = Product::findOrFail($id);
-        $multiImgs = MultiImg::where('product_id', $id)->get();
-        return view('frontend.productDetails', compact('product', 'multiImgs'));
+        $product = Product::findOrFail($product_id);
+
+        $color_en = $product->product_color_en;
+        $product_color_en = explode(',', $color_en);
+
+        $color_bn = $product->product_color_bn;
+        $product_color_bn = explode(',', $color_bn);
+
+        $size_en = $product->product_size_en;
+        $product_size_en = explode(',', $size_en);
+
+        $size_bn = $product->product_size_bn;
+        $product_size_bn = explode(',', $size_bn);
+
+        $multiImgs = MultiImg::where('product_id', $product_id)->get();
+        $relatedProducts = Product::where('category_id', $product->category_id)->where('id', '!=', $product_id)->orderBy('id', 'DESC')->get();
+        return view('frontend.productDetails', compact('product', 'multiImgs', 'product_color_en', 'product_color_bn', 'product_size_en', 'product_size_bn', 'relatedProducts'));
     }
 
     //tag wise product
