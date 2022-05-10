@@ -88,7 +88,7 @@ class IndexController extends Controller
     //===========================product view with ajax==========================
     public function productViewAjax($product_id)
     {
-        $product = Product::findOrFail($product_id);
+        $product = Product::with('category', 'brand')->findOrFail($product_id);
         $color_en = $product->product_color_en;
         $product_color_en = explode(',', $color_en);
 

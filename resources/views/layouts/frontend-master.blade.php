@@ -577,7 +577,23 @@
                 url: 'product/view/modal/' + id,
                 dataType: 'json',
                 success: function(data) {
-                    console.log(data);
+                    $('#price').text(data.product.selling_price);
+                    $('#pCode').text(data.product.product_code);
+                    $('#pCategory').text(data.product.category.category_name_en);
+                    $('#pBrand').text(data.product.brand.brand_name_en);
+                    $('#pName').text(data.product.product_name_en);
+                    $('#pImage').attr('src', '/' + data.product.product_thambnail);
+                    $('select[name="color"]').empty();
+                    $.each(data.color, function(key, value) {
+                        $('select[name="color"]').append("<option value='" + value + "'>" + value +
+                            "</option>")
+                    })
+
+                    $('select[name="size"]').empty();
+                    $.each(data.size, function(key, value) {
+                        $('select[name="size"]').append("<option value='" + value + "'>" + value +
+                            "</option>")
+                    })
                 }
             })
         }

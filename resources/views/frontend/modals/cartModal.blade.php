@@ -4,7 +4,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">View Product</h5>
+                <h5 class="modal-title" id="pName"></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -13,30 +13,28 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="card" style="width: 16rem;">
-                            <img src="" class="card-img-top" alt="" style="height: 250px">
+                            <img src="" class="card-img-top" alt="" height="200px" id="pImage">
                         </div>
                     </div>
                     <div class="col-md-4">
                         <ul class="list-group">
-                            <li class="list-group-item">Price: </li>
-                            <li class="list-group-item">Product Code: </li>
-                            <li class="list-group-item">Category: </li>
-                            <li class="list-group-item">Brand: </li>
-                            <li class="list-group-item">Stock: </li>
+                            <li class="list-group-item">Price: <strong id="price"></strong></li>
+                            <li class="list-group-item">Product Code: <strong id="pCode"></strong></li>
+                            <li class="list-group-item">Category: <strong id="pCategory"></strong></li>
+                            <li class="list-group-item">Brand: <strong id="pBrand"></strong></li>
+                            <li class="list-group-item">Stock: <strong id="stock"></strong></li>
                         </ul>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="exampleFormControlSelect1">Select Color</label>
-                            <select class="form-control" id="exampleFormControlSelect1">
-                                <option>1</option>
+                            <select class="form-control" id="exampleFormControlSelect1" name="color">
 
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="exampleFormControlSelect1">Select Size</label>
-                            <select class="form-control" id="exampleFormControlSelect1">
-                                <option>1</option>
+                            <select class="form-control" id="exampleFormControlSelect1" name="size">
 
                             </select>
                         </div>
