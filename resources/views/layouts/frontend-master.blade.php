@@ -571,6 +571,7 @@
             }
         })
 
+        //start product view with modal
         function productView(id) {
             $.ajax({
                 type: 'GET',
@@ -583,6 +584,8 @@
                     $('#pBrand').text(data.product.brand.brand_name_en);
                     $('#pName').text(data.product.product_name_en);
                     $('#pImage').attr('src', '/' + data.product.product_thambnail);
+                    $('#product_id').val(id);
+                    $('#qty').val(1);
 
                     //product price
                     if (data.product.discount_price == null) {
@@ -632,7 +635,52 @@
                 }
             })
         }
-        productView();
+        //end product view with modal
+
+        //Start add to cart product
+        function addToCart() {
+            var product_name = $('#pName').text();
+            var id = $('#product_id').val();
+            var color = $('#color option:selected').text();
+            var size = $('#size option:selected').text();
+            var quantity = $('#qty').val();
+            $.ajax({
+                type: "POST",
+                dataType: 'json',
+                data: {
+                    color: color,
+                    size: size,
+                    quantity: quantity,
+                    product_name: product_name
+                },
+                url: "/cart/data/store/" + id,
+                success: function(data) {
+                    // miniCart();
+                    $('#closeModal').click();
+                    //  start message
+                    // const Toast = Swal.mixin({
+                    //     toast: true,
+                    //     position: 'top-end',
+                    //     showConfirmButton: false,
+                    //     timer: 3000
+                    // })
+                    // if ($.isEmptyObject(data.error)) {
+                    //     Toast.fire({
+                    //         type: 'success',
+                    //         title: data.success
+                    //     })
+                    // } else {
+                    //     Toast.fire({
+                    //         type: 'error',
+                    //         title: data.error
+                    //     })
+                    // }
+                    //  end message
+                    console.log(data);
+                }
+            })
+        }
+        //End add to cart product
     </script>
 
 

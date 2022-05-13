@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SliderController;
+use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\LanguageController;
 use App\Http\Controllers\Frontend\IndexController;
 use Illuminate\Support\Facades\Auth;
@@ -125,3 +126,6 @@ Route::get('subcategory/product/{subcat_id}/{slug}', [IndexController::class, 's
 Route::get('sub/subcategory/product/{subsubcat_id}/{slug}', [IndexController::class, 'subSubCatWiseProduct']);
 //===========================product view modal with ajax==========================
 Route::get('product/view/modal/{id}', [IndexController::class, 'productViewAjax']);
+
+//============================Add to Cart with ajax===========================
+Route::post('cart/data/store/{id}', [CartController::class, 'addToCart']);
