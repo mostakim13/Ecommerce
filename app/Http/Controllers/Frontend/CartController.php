@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
-use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
+use Gloudemans\Shoppingcart\Facades\Cart;
 
 class CartController extends Controller
 {
@@ -19,11 +19,13 @@ class CartController extends Controller
                 'qty' => $request->quantity,
                 'price' => $product->selling_price,
                 'weight' => 1,
-                'options' => ['color' => $request->color],
-                'options' => ['size' => $request->size],
-                'options' => ['image' => $request->product_thambnail]
+                'options' => [
+                    'image' => $product->product_thambnail,
+                    'color' => $request->color,
+                    'size' => $request->size,
+                ],
             ]);
-            return response()->json('success');
+            return response()->json(['success' => 'Sucessfully Added On Your Cart']);
         } else {
             Cart::add([
                 'id' => $id,
@@ -31,11 +33,13 @@ class CartController extends Controller
                 'qty' => $request->quantity,
                 'price' => $product->discount_price,
                 'weight' => 1,
-                'options' => ['color' => $request->color],
-                'options' => ['size' => $request->size],
-                'options' => ['image' => $request->product_thambnail]
+                'options' => [
+                    'image' => $product->product_thambnail,
+                    'color' => $request->color,
+                    'size' => $request->size,
+                ],
             ]);
-            return response()->json('success');
+            return response()->json(['success' => 'Sucessfully Added On Your Cart']);
         }
     }
 }

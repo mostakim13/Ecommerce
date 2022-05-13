@@ -378,6 +378,7 @@
     @include('frontend.modals.cartModal')
 
 
+
     <!-- ========================== FOOTER ============================= -->
     <footer id="footer" class="footer color-bg">
 
@@ -522,13 +523,11 @@
     <!-- For demo purposes – can be removed on production : End -->
 
     <!-- JavaScripts placed at the end of the document so the pages load faster -->
+
     <script src="{{ asset('frontend') }}/assets/js/jquery-1.11.1.min.js"></script>
-
     <script src="{{ asset('frontend') }}/assets/js/bootstrap.min.js"></script>
-
     <script src="{{ asset('frontend') }}/assets/js/bootstrap-hover-dropdown.min.js"></script>
     <script src="{{ asset('frontend') }}/assets/js/owl.carousel.min.js"></script>
-
     <script src="{{ asset('frontend') }}/assets/js/echo.min.js"></script>
     <script src="{{ asset('frontend') }}/assets/js/jquery.easing-1.3.min.js"></script>
     <script src="{{ asset('frontend') }}/assets/js/bootstrap-slider.min.js"></script>
@@ -537,153 +536,158 @@
     <script src="{{ asset('frontend') }}/assets/js/bootstrap-select.min.js"></script>
     <script src="{{ asset('frontend') }}/assets/js/wow.min.js"></script>
     <script src="{{ asset('frontend') }}/assets/js/scripts.js"></script>
+    <script src="{{ asset('frontend') }}/assets/js/sweetalert2@8.js"></script>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script> --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="{{ asset('common') }}/jquery.form-validator.min.js"></script>
+    <script>
+        $.validate({
+            lang: 'en'
+        });
+    </script>
     <script src="{{ asset('backend') }}/lib/toastr/toastr.min.js"></script>
 
-
-
-    <script>
+    < script>
         @if (Session::has('message'))
             var type = "{{ Session::get('alert-type', 'info') }}"
             switch (type) {
-                case 'info':
-                    toastr.info(" {{ Session::get('message') }} ");
-                    break;
+            case 'info':
+            toastr.info(" {{ Session::get('message') }} ");
+            break;
 
-                case 'success':
-                    toastr.success(" {{ Session::get('message') }} ");
-                    break;
+            case 'success':
+            toastr.success(" {{ Session::get('message') }} ");
+            break;
 
-                case 'warning':
-                    toastr.warning(" {{ Session::get('message') }} ");
-                    break;
+            case 'warning':
+            toastr.warning(" {{ Session::get('message') }} ");
+            break;
 
-                case 'error':
-                    toastr.error(" {{ Session::get('message') }} ");
-                    break;
+            case 'error':
+            toastr.error(" {{ Session::get('message') }} ");
+            break;
             }
         @endif
-    </script>
+        </script>
 
-    <script type="text/javascript">
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $("meta[name='csrf-token']").attr("content")
-            }
-        })
+        <script type="text/javascript">
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $("meta[name='csrf-token']").attr("content")
+                }
+            })
 
-        //start product view with modal
-        function productView(id) {
-            $.ajax({
-                type: 'GET',
-                url: 'product/view/modal/' + id,
-                dataType: 'json',
-                success: function(data) {
-                    $('#price').text(data.product.selling_price);
-                    $('#pCode').text(data.product.product_code);
-                    $('#pCategory').text(data.product.category.category_name_en);
-                    $('#pBrand').text(data.product.brand.brand_name_en);
-                    $('#pName').text(data.product.product_name_en);
-                    $('#pImage').attr('src', '/' + data.product.product_thambnail);
-                    $('#product_id').val(id);
-                    $('#qty').val(1);
+            //start product view with modal
+            function productView(id) {
+                $.ajax({
+                    type: 'GET',
+                    url: 'product/view/modal/' + id,
+                    dataType: 'json',
+                    success: function(data) {
+                        $('#price').text(data.product.selling_price);
+                        $('#pCode').text(data.product.product_code);
+                        $('#pCategory').text(data.product.category.category_name_en);
+                        $('#pBrand').text(data.product.brand.brand_name_en);
+                        $('#pName').text(data.product.product_name_en);
+                        $('#pImage').attr('src', '/' + data.product.product_thambnail);
+                        $('#product_id').val(id);
+                        $('#qty').val(1);
 
-                    //product price
-                    if (data.product.discount_price == null) {
-                        $('#pPrice').text('');
-                        $('#oldPrice').text('');
-                        $('#pPrice').text(data.product.selling_price);
+                        //product price
+                        if (data.product.discount_price == null) {
+                            $('#pPrice').text('');
+                            $('#oldPrice').text('');
+                            $('#pPrice').text(data.product.selling_price);
 
-                    } else {
-                        $('#pPrice').text(data.product.discount_price);
-                        $('#oldPrice').text(data.product.selling_price);
-                    }
-
-                    //stock
-                    if (data.product.product_qty > 0) {
-                        $('#available').text('');
-                        $('#stockout').text('');
-
-                        $('#available').text('Available');
-
-                    } else {
-                        $('#available').text('');
-                        $('#stockout').text('');
-
-                        $('#stockout').text('Stock out');
-                    }
-
-
-                    //color
-                    $('select[name="color"]').empty();
-                    $.each(data.color, function(key, value) {
-                        $('select[name="color"]').append("<option value='" + value + "'>" + value +
-                            "</option>")
-                    })
-
-                    //size
-                    $('select[name="size"]').empty();
-                    $.each(data.size, function(key, value) {
-                        $('select[name="size"]').append("<option value='" + value + "'>" + value +
-                            "</option>")
-                        if (data.size == "") {
-                            $('#sizeArea').hide();
                         } else {
-                            $('#sizeArea').show();
-
+                            $('#pPrice').text(data.product.discount_price);
+                            $('#oldPrice').text(data.product.selling_price);
                         }
-                    })
-                }
-            })
-        }
-        //end product view with modal
 
-        //Start add to cart product
-        function addToCart() {
-            var product_name = $('#pName').text();
-            var id = $('#product_id').val();
-            var color = $('#color option:selected').text();
-            var size = $('#size option:selected').text();
-            var quantity = $('#qty').val();
-            $.ajax({
-                type: "POST",
-                dataType: 'json',
-                data: {
-                    color: color,
-                    size: size,
-                    quantity: quantity,
-                    product_name: product_name
-                },
-                url: "/cart/data/store/" + id,
-                success: function(data) {
-                    // miniCart();
-                    $('#closeModal').click();
-                    //  start message
-                    // const Toast = Swal.mixin({
-                    //     toast: true,
-                    //     position: 'top-end',
-                    //     showConfirmButton: false,
-                    //     timer: 3000
-                    // })
-                    // if ($.isEmptyObject(data.error)) {
-                    //     Toast.fire({
-                    //         type: 'success',
-                    //         title: data.success
-                    //     })
-                    // } else {
-                    //     Toast.fire({
-                    //         type: 'error',
-                    //         title: data.error
-                    //     })
-                    // }
-                    //  end message
-                    console.log(data);
-                }
-            })
-        }
-        //End add to cart product
-    </script>
+                        //stock
+                        if (data.product.product_qty > 0) {
+                            $('#available').text('');
+                            $('#stockout').text('');
+
+                            $('#available').text('Available');
+
+                        } else {
+                            $('#available').text('');
+                            $('#stockout').text('');
+
+                            $('#stockout').text('Stock out');
+                        }
 
 
+                        //color
+                        $('select[name="color"]').empty();
+                        $.each(data.color, function(key, value) {
+                            $('select[name="color"]').append("<option value='" + value + "'>" + value +
+                                "</option>")
+                        })
+
+                        //size
+                        $('select[name="size"]').empty();
+                        $.each(data.size, function(key, value) {
+                            $('select[name="size"]').append("<option value='" + value + "'>" + value +
+                                "</option>")
+                            if (data.size == "") {
+                                $('#sizeArea').hide();
+                            } else {
+                                $('#sizeArea').show();
+
+                            }
+                        })
+                    }
+                })
+            }
+            //end product view with modal
+
+            //Start add to cart product
+            function addToCart() {
+                var product_name = $('#pName').text();
+                var id = $('#product_id').val();
+                var color = $('#color option:selected').text();
+                var size = $('#size option:selected').text();
+                var quantity = $('#qty').val();
+                $.ajax({
+                    type: "POST",
+                    dataType: 'json',
+                    data: {
+                        color: color,
+                        size: size,
+                        quantity: quantity,
+                        product_name: product_name
+                    },
+                    url: "/cart/data/store/" + id,
+                    success: function(data) {
+                        // miniCart();
+                        $('#closeModal').click();
+                        //  start message
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000
+                        })
+                        if ($.isEmptyObject(data.error)) {
+                            Toast.fire({
+                                type: 'success',
+                                title: data.success
+                            })
+                        } else {
+                            Toast.fire({
+                                type: 'error',
+                                title: data.error
+                            })
+                        }
+                        //  end message
+
+                    }
+                })
+            }
+            //End add to cart product
+        </script>
 </body>
 
 </html>

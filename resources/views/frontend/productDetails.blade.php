@@ -165,7 +165,7 @@ function bn_price($str)
                         <!-- /.gallery-holder -->
                         <div class="col-sm-6 col-md-7 product-info-block">
                             <div class="product-info">
-                                <h1 class="name">
+                                <h1 class="name" id="pName">
                                     @if (session()->get('language') == 'bangla')
                                         {{ $product->product_name_bn }}
                                     @else
@@ -261,8 +261,8 @@ function bn_price($str)
                                                 $afterDiscountPrice = $product->selling_price - $product->discount_price;
                                             @endphp
                                             <div class="form-group">
-                                                <label for="exampleFormControlSelect1">Select Color</label>
-                                                <select class="form-control" id="exampleFormControlSelect1">
+                                                <label for="color">Select Color</label>
+                                                <select class="form-control" id="color">
                                                     @foreach ($product_color_en as $color)
                                                         <option value="{{ $color }}">{{ ucwords($color) }}
                                                         </option>
@@ -272,15 +272,18 @@ function bn_price($str)
                                         </div>
 
                                         <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label for="exampleFormControlSelect1">Select Size</label>
-                                                <select class="form-control" id="exampleFormControlSelect1">
-                                                    @foreach ($product_size_en as $size)
-                                                        <option value="{{ $size }}">{{ ucwords($size) }}
-                                                        </option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
+                                            @if ($product->product_size_en == null)
+                                            @else
+                                                <div class="form-group">
+                                                    <label for="size">Select Size</label>
+                                                    <select class="form-control" id="size">
+                                                        @foreach ($product_size_en as $size)
+                                                            <option value="{{ $size }}">{{ ucwords($size) }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            @endif
                                         </div>
                                     </div>
                                     <!-- /.row -->
@@ -306,15 +309,20 @@ function bn_price($str)
                                                                     class="icon fa fa-sort-desc"></i></span>
                                                         </div>
                                                     </div>
-                                                    <input type="text" value="1" />
+
+                                                    <input type="text" id="qty" value="1" min="1" />
                                                 </div>
                                             </div>
                                         </div>
 
+
+                                        <input type="hidden" id="product_id" value="{{ $product->id }}" />
+
+
                                         <div class="col-sm-7">
-                                            <a href="#" class="btn btn-primary"><i
+                                            <button type="submit" onclick="addToCart()" class="btn btn-primary"><i
                                                     class="fa fa-shopping-cart inner-right-vs"></i>
-                                                ADD TO CART</a>
+                                                ADD TO CART</button>
                                         </div>
                                     </div>
                                     <!-- /.row -->
