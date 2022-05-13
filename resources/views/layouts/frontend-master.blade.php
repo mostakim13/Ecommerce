@@ -583,16 +583,51 @@
                     $('#pBrand').text(data.product.brand.brand_name_en);
                     $('#pName').text(data.product.product_name_en);
                     $('#pImage').attr('src', '/' + data.product.product_thambnail);
+
+                    //product price
+                    if (data.product.discount_price == null) {
+                        $('#pPrice').text('');
+                        $('#oldPrice').text('');
+                        $('#pPrice').text(data.product.selling_price);
+
+                    } else {
+                        $('#pPrice').text(data.product.discount_price);
+                        $('#oldPrice').text(data.product.selling_price);
+                    }
+
+                    //stock
+                    if (data.product.product_qty > 0) {
+                        $('#available').text('');
+                        $('#stockout').text('');
+
+                        $('#available').text('Available');
+
+                    } else {
+                        $('#available').text('');
+                        $('#stockout').text('');
+
+                        $('#stockout').text('Stock out');
+                    }
+
+
+                    //color
                     $('select[name="color"]').empty();
                     $.each(data.color, function(key, value) {
                         $('select[name="color"]').append("<option value='" + value + "'>" + value +
                             "</option>")
                     })
 
+                    //size
                     $('select[name="size"]').empty();
                     $.each(data.size, function(key, value) {
                         $('select[name="size"]').append("<option value='" + value + "'>" + value +
                             "</option>")
+                        if (data.size == "") {
+                            $('#sizeArea').hide();
+                        } else {
+                            $('#sizeArea').show();
+
+                        }
                     })
                 }
             })

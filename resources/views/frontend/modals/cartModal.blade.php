@@ -18,11 +18,18 @@
                     </div>
                     <div class="col-md-4">
                         <ul class="list-group">
-                            <li class="list-group-item">Price: <strong id="price"></strong></li>
+                            <li class="list-group-item">Price: <strong class="text-danger">$<span id="pPrice"></span>
+                                </strong>
+                                <del id="oldPrice">$</del>
+                            </li>
                             <li class="list-group-item">Product Code: <strong id="pCode"></strong></li>
                             <li class="list-group-item">Category: <strong id="pCategory"></strong></li>
                             <li class="list-group-item">Brand: <strong id="pBrand"></strong></li>
-                            <li class="list-group-item">Stock: <strong id="stock"></strong></li>
+                            <li class="list-group-item">Stock: <span class="bagde badge-pill badge-success"
+                                    id="available" style="background-color: green; color: white"></span>
+                                <span class="bagde badge-pill badge-danger" id="stockout"
+                                    style="background-color: red; color: white"></span>
+                            </li>
                         </ul>
                     </div>
                     <div class="col-md-4">
@@ -32,7 +39,7 @@
 
                             </select>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" id="sizeArea">
                             <label for="exampleFormControlSelect1">Select Size</label>
                             <select class="form-control" id="exampleFormControlSelect1" name="size">
 
