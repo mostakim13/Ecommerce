@@ -194,27 +194,12 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <div class="cart-item product-summary">
-                                        <div class="row">
-                                            <div class="col-xs-4">
-                                                <div class="image">
-                                                    <a href="detail.html"><img
-                                                            src="{{ asset('frontend') }}/assets/images/cart.jpg"
-                                                            alt=""></a>
-                                                </div>
-                                            </div>
-                                            <div class="col-xs-7">
+                                    {{-- =======miniCart start with ajax======== --}}
+                                    <div id="miniCart">
 
-                                                <h3 class="name"><a href="index8a95.html?page-detail">Simple
-                                                        Product</a></h3>
-                                                <div class="price">$600.00</div>
-                                            </div>
-                                            <div class="col-xs-1 action">
-                                                <a href="#"><i class="fa fa-trash"></i></a>
-                                            </div>
-                                        </div>
-                                    </div><!-- /.cart-item -->
-                                    <div class="clearfix"></div>
+                                    </div>
+                                    {{-- =======miniCart end with ajax======== --}}
+
                                     <hr>
 
                                     <div class="clearfix cart-total">
@@ -523,7 +508,6 @@
     <!-- For demo purposes – can be removed on production : End -->
 
     <!-- JavaScripts placed at the end of the document so the pages load faster -->
-
     <script src="{{ asset('frontend') }}/assets/js/jquery-1.11.1.min.js"></script>
     <script src="{{ asset('frontend') }}/assets/js/bootstrap.min.js"></script>
     <script src="{{ asset('frontend') }}/assets/js/bootstrap-hover-dropdown.min.js"></script>
@@ -581,7 +565,7 @@
             function productView(id) {
                 $.ajax({
                     type: 'GET',
-                    url: 'product/view/modal/' + id,
+                    url: '/product/view/modal/' + id,
                     dataType: 'json',
                     success: function(data) {
                         $('#price').text(data.product.selling_price);
@@ -661,7 +645,7 @@
                     },
                     url: "/cart/data/store/" + id,
                     success: function(data) {
-                        // miniCart();
+                        miniCart();
                         $('#closeModal').click();
                         //  start message
                         const Toast = Swal.mixin({
@@ -687,6 +671,40 @@
                 })
             }
             //End add to cart product
+        </script>
+        <script>
+            function miniCart() {
+                $.ajax({
+                    type: 'GET',
+                    url: '/product/mini/cart',
+                    dataType: 'json',
+                    success: function(response) {
+                        // $('span[id="cartSubTotal"]').text(response.cartTotal);
+                        $('#cartQty').text(response.cartQty);
+                        var miniCart = ""
+                        $.each(response.carts, function(key, value) {
+                            miniCart += `<div class="cart-item product-summary">
+                    <div class="row">
+                    <div class="col-xs-4">
+                    <div class="image">
+                        <a href="detail.html"><img src="/${value.options.image}" alt=""></a>
+                    </div>
+                    </div>
+                    <div class="col-xs-7">
+                    <h3 class="name"><a href="index8a95.html?page-detail">${value.name}</a></h3>
+                    <div class="price">${value.price}$</div>
+                    </div>
+                    <div class="col-xs-1 action">
+                    <button type="submit"><i class="fa fa-trash"></i></button>
+                    </div>
+                    </div>
+                    </div><!-- /.cart-item -->
+                    <div class="clearfix"></div> <hr>`
+                        });
+                        $('#miniCart').html(miniCart);
+                    }
+                })
+            }
         </script>
 </body>
 

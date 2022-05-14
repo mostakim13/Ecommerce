@@ -25,6 +25,7 @@ class CartController extends Controller
                     'size' => $request->size,
                 ],
             ]);
+
             return response()->json(['success' => 'Sucessfully Added On Your Cart']);
         } else {
             Cart::add([
@@ -41,5 +42,19 @@ class CartController extends Controller
             ]);
             return response()->json(['success' => 'Sucessfully Added On Your Cart']);
         }
+    }
+
+    //================================minicart section========================
+    public function miniCart()
+    {
+        $carts = Cart::content();
+        $cartQty = Cart::count();
+        $cartTotal = Cart::total();
+
+        return response()->json(array(
+            'carts' => $carts,
+            'cartQty' => $cartQty,
+            'cartTotal' => $cartTotal
+        ));
     }
 }
