@@ -47,6 +47,7 @@
                             <input type="number" class="form-control" id="qty" value="1" min="1">
                         </div>
                         <input type="hidden" id="product_id">
+                        {{-- <input type="hidden" id="product_id" value="{{ $product->id }}" /> --}}
                         <button type="submit" class="btn btn-danger" onclick="addToCart()">Add To Cart</button>
                     </div>
                 </div>

@@ -180,12 +180,13 @@
                                     <div class="basket">
                                         <i class="glyphicon glyphicon-shopping-cart"></i>
                                     </div>
-                                    <div class="basket-item-count"><span class="count">2</span></div>
+                                    <div class="basket-item-count"><span class="count" id="cartQty"></span>
+                                    </div>
                                     <div class="total-price-basket">
                                         <span class="lbl">cart -</span>
                                         <span class="total-price">
-                                            <span class="sign">$</span><span
-                                                class="value">600.00</span>
+                                            <span class="sign">$</span><span class="value"
+                                                id="cartSubTotal"></span>
                                         </span>
                                     </div>
 
@@ -205,8 +206,8 @@
                                     <div class="clearfix cart-total">
                                         <div class="pull-right">
 
-                                            <span class="text">Sub Total :</span><span
-                                                class='price'>$600.00</span>
+                                            <span class="text">Sub Total :</span><span class='price'
+                                                id="cartSubTotal"></span>
 
                                         </div>
                                         <div class="clearfix"></div>
@@ -666,12 +667,13 @@
                             })
                         }
                         //  end message
-
                     }
                 })
             }
             //End add to cart product
         </script>
+        @yield('scripts')
+
         <script>
             function miniCart() {
                 $.ajax({
@@ -679,32 +681,33 @@
                     url: '/product/mini/cart',
                     dataType: 'json',
                     success: function(response) {
-                        // $('span[id="cartSubTotal"]').text(response.cartTotal);
+                        $('span[id="cartSubTotal"]').text(response.cartTotal);
                         $('#cartQty').text(response.cartQty);
-                        var miniCart = ""
+                        var miniCart = "";
                         $.each(response.carts, function(key, value) {
                             miniCart += `<div class="cart-item product-summary">
-                    <div class="row">
-                    <div class="col-xs-4">
-                    <div class="image">
-                        <a href="detail.html"><img src="/${value.options.image}" alt=""></a>
-                    </div>
-                    </div>
-                    <div class="col-xs-7">
-                    <h3 class="name"><a href="index8a95.html?page-detail">${value.name}</a></h3>
-                    <div class="price">${value.price}$</div>
-                    </div>
-                    <div class="col-xs-1 action">
-                    <button type="submit"><i class="fa fa-trash"></i></button>
-                    </div>
-                    </div>
-                    </div><!-- /.cart-item -->
-                    <div class="clearfix"></div> <hr>`
+                        <div class="row">
+                        <div class="col-xs-4">
+                        <div class="image">
+                            <a href="detail.html"><img src="/${value.options.image}" alt=""></a>
+                        </div>
+                        </div>
+                        <div class="col-xs-7">
+                        <h3 class="name"><a href="index8a95.html?page-detail">${value.name}</a></h3>
+                        <div class="price">${value.price}$ * ${value.qty}</div>
+                        </div>
+                        <div class="col-xs-1 action">
+                        <button type="submit" id="${value.rowId}" onclick="miniCartRemove(this.id)"><i class="fa fa-trash"></i></button>
+                        </div>
+                        </div>
+                        </div><!-- /.cart-item -->
+                        <div class="clearfix"></div> <hr>`
                         });
                         $('#miniCart').html(miniCart);
                     }
                 })
             }
+            miniCart();
         </script>
 </body>
 
