@@ -708,6 +708,38 @@
                 })
             }
             miniCart();
+
+            //=================minicart remove start=================
+            function miniCartRemove(rowId) {
+                $.ajax({
+                    type: 'GET',
+                    url: '/minicart/product-remove/' + rowId,
+                    dataType: 'json',
+                    success: function(data) {
+                        miniCart();
+                        //  start message
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000
+                        })
+                        if ($.isEmptyObject(data.error)) {
+                            Toast.fire({
+                                type: 'success',
+                                title: data.success
+                            })
+                        } else {
+                            Toast.fire({
+                                type: 'error',
+                                title: data.error
+                            })
+                        }
+                        //  end message
+                    }
+                })
+            }
+            //=================minicart remove end===================
         </script>
 </body>
 

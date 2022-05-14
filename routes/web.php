@@ -132,3 +132,6 @@ Route::post('/cart/data/store/{id}', [CartController::class, 'addToCart']);
 
 //============================Add to Cart with ajax===========================
 Route::get('/product/mini/cart/', [CartController::class, 'miniCart']);
+
+
+Route::get('/minicart/product-remove/{rowId}', [CartController::class, 'miniCartRemove']);
