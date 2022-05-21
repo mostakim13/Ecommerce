@@ -800,11 +800,13 @@ function bn_price($str)
 
                                                     </li>
 
-                                                    <li class="lnk wishlist">
-                                                        <a class="add-to-cart" href="detail.html" title="Wishlist">
-                                                            <i class="icon fa fa-heart"></i>
-                                                        </a>
-                                                    </li>
+
+                                                    <button class="btn btn-primary icon" type="button"
+                                                        title="Add to Wishlist" id="{{ $product->id }}"
+                                                        onclick="addToWishlist(this.id)">
+                                                        <i class="icon fa fa-heart"></i>
+                                                    </button>
+
 
                                                     <li class="lnk">
                                                         <a class="add-to-cart" href="detail.html" title="Compare">
