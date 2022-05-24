@@ -113,6 +113,8 @@ Route::group(['prefix' => 'user', 'middleware' => ['user', 'auth'], 'namespace' 
     Route::get('wishlist', [wishlistController::class, 'create'])->name('wishlist');
 
     Route::get('/get-wishlist-product', [WishlistController::class, 'readAllProduct']);
+
+    Route::get('wishlist-remove/{id}', [WishlistController::class, 'destroy']);
 });
 
 //==============================================Frontend Routes=========================================

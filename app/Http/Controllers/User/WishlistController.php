@@ -38,6 +38,14 @@ class WishlistController extends Controller
     public function readAllProduct()
     {
         $wishlist = Wishlist::with('product')->where('user_id', Auth::id())->latest()->get();
+        // dd($wishlist);
         return response()->json($wishlist);
+    }
+
+    //remove wishlist
+    public function destroy($id)
+    {
+        Wishlist::where('user_id', Auth::id())->where('id', $id)->delete();
+        return response()->json(['success' => 'Successfully product remove']);
     }
 }
