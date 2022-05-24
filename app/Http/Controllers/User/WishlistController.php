@@ -29,4 +29,9 @@ class WishlistController extends Controller
             return response()->json(['error' => 'At first login your account']);
         }
     }
+
+    public function create()
+    {
+        return view('user.wishlist-page');
+    }
 }

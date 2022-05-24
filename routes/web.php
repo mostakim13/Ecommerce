@@ -108,6 +108,9 @@ Route::group(['prefix' => 'user', 'middleware' => ['user', 'auth'], 'namespace' 
     Route::post('update/image', [UserController::class, 'updateImage'])->name('update-image');
     Route::get('update/password', [UserController::class, 'updatePasswordPage'])->name('update-password');
     Route::post('store/password', [UserController::class, 'storePassword'])->name('password-store');
+
+    //wishlist
+    Route::get('wishlist', [wishlistController::class, 'create'])->name('wishlist');
 });
 
 //==============================================Frontend Routes=========================================
