@@ -111,6 +111,8 @@ Route::group(['prefix' => 'user', 'middleware' => ['user', 'auth'], 'namespace' 
 
     //wishlist
     Route::get('wishlist', [wishlistController::class, 'create'])->name('wishlist');
+
+    Route::get('/get-wishlist-product', [WishlistController::class, 'readAllProduct']);
 });
 
 //==============================================Frontend Routes=========================================

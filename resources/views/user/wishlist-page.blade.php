@@ -32,34 +32,9 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td class="col-md-2">
-                                        <img src="assets/images/products/p1.jpg" alt="imga" />
-                                    </td>
-                                    <td class="col-md-7">
-                                        <div class="product-name">
-                                            <a href="#">Floral Print Buttoned</a>
-                                        </div>
-                                        <div class="rating">
-                                            <i class="fa fa-star rate"></i>
-                                            <i class="fa fa-star rate"></i>
-                                            <i class="fa fa-star rate"></i>
-                                            <i class="fa fa-star rate"></i>
-                                            <i class="fa fa-star non-rate"></i>
-                                            <span class="review">( 06 Reviews )</span>
-                                        </div>
-                                        <div class="price">
-                                            $400.00
-                                            <span>$900.00</span>
-                                        </div>
-                                    </td>
-                                    <td class="col-md-2">
-                                        <a href="#" class="btn-upper btn btn-primary">Add to cart</a>
-                                    </td>
-                                    <td class="col-md-1 close-btn">
-                                        <a href="#" class=""><i class="fa fa-times"></i></a>
-                                    </td>
-                                </tr>
+                                <div id="wishlist">
+
+                                </div>
 
                             </tbody>
                         </table>
@@ -78,4 +53,6 @@
     </div>
     <!-- /.container -->
 </div>
+
+
 @endsection

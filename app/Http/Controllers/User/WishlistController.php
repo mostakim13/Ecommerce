@@ -34,4 +34,10 @@ class WishlistController extends Controller
     {
         return view('user.wishlist-page');
     }
+    //all product
+    public function readAllProduct()
+    {
+        $wishlist = Wishlist::with('product')->where('user_id', Auth::id())->latest()->get();
+        return response()->json($wishlist);
+    }
 }

@@ -774,6 +774,43 @@
                 })
             }
         </script>
+        {{-- =============wishlist page ================== --}}
+        <script>
+            function wishlist() {
+                $.ajax({
+                    type: 'GET',
+                    url: "{{ url('/user/get-wishlist-product') }}",
+                    dataType: 'json',
+                    success: function(response) {
+                        var rows = ""
+                        $.each(response, function(key, value) {
+                            rows += `<tr>
+     <td class="col-md-2"><img src="/${value.product.product_thambnail}" alt="imga"></td>
+     <td class="col-md-7">
+      <div class="product-name"><a href="#">${value.product.product_name_en}</a></div>
+      <div class="price">
+                        ${value.product.discount_price == null
+                            ? `$${value.product.selling_price}`
+                            :
+                            `$${value.product.discount_price} <del><span>$${value.product.selling_price}</span></del>`
+                        }
+      </div>
+     </td>
+     <td class="col-md-2">
+
+      <button class="btn-upper btn btn-primary" type="button" title="Add Cart" data-toggle="modal" data-target="#cartModal" id="${value.product_id}" onclick="productView(this.id)">Add to cart</button>
+     </td>
+     <td class="col-md-1 close-btn">
+      <button type="submit" class="" id="${value.id}" onclick="wishlistRemove(this.id)" ><i class="fa fa-times"></i></button>
+     </td>
+    </tr>`
+                        });
+                        $('#wishlist').html(rows);
+                    }
+                })
+            }
+            wishlist();
+        </script>
 </body>
 
 </html>
