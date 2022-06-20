@@ -64,4 +64,23 @@ class CartController extends Controller
         Cart::remove($rowId);
         return response()->json(['success' => 'Sucessfully Removed Product!']);
     }
+
+
+    public function create()
+    {
+        return view('user.cart-page');
+    }
+
+    public function getAllCart()
+    {
+        $carts = Cart::content();
+        $cartQty = Cart::count();
+        $cartTotal = Cart::total();
+
+        return response()->json(array(
+            'carts' => $carts,
+            'cartQty' => $cartQty,
+            'cartTotal' => round($cartTotal),
+        ));
+    }
 }

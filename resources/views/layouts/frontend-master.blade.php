@@ -62,14 +62,14 @@
                                     @endif
                                 </a></li>
                             <li><a href="{{ route('wishlist') }}"><i class="icon fa fa-heart"></i>Wishlist</a></li>
-                            <li><a href="#"><i class="icon fa fa-shopping-cart"></i>My Cart</a></li>
+                            <li><a href="{{ route('cart') }}"><i class="icon fa fa-shopping-cart"></i>My Cart</a>
+                            </li>
                             <li><a href="#"><i class="icon fa fa-check"></i>Checkout</a></li>
                             <li>
                                 @auth
                                     <a href="{{ route('user.dashboard') }}"><i class="icon fa fa-lock"></i>My Profile</a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                        class="d-none">
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
                                 @else
@@ -82,8 +82,8 @@
                     <div class="cnt-block">
                         <ul class="list-unstyled list-inline">
                             <li class="dropdown dropdown-small">
-                                <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown"><span
-                                        class="value">USD </span><b class="caret"></b></a>
+                                <a href="#" class="dropdown-toggle" data-hover="dropdown"
+                                    data-toggle="dropdown"><span class="value">USD </span><b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="#">USD</a></li>
                                     <li><a href="#">INR</a></li>
@@ -92,8 +92,8 @@
                             </li>
 
                             <li class="dropdown dropdown-small">
-                                <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown"><span
-                                        class="value">
+                                <a href="#" class="dropdown-toggle" data-hover="dropdown"
+                                    data-toggle="dropdown"><span class="value">
                                         @if (session()->get('language') == 'bangla')
                                             ভাষা পরিবর্তন করুন
                                         @else
@@ -472,28 +472,38 @@
             <div class="container">
                 <div class="col-xs-12 col-sm-6 no-padding social">
                     <ul class="link">
-                        <li class="fb pull-left"><a target="_blank" rel="nofollow" href="#" title="Facebook"></a>
+                        <li class="fb pull-left"><a target="_blank" rel="nofollow" href="#"
+                                title="Facebook"></a>
                         </li>
-                        <li class="tw pull-left"><a target="_blank" rel="nofollow" href="#" title="Twitter"></a></li>
+                        <li class="tw pull-left"><a target="_blank" rel="nofollow" href="#"
+                                title="Twitter"></a></li>
                         <li class="googleplus pull-left"><a target="_blank" rel="nofollow" href="#"
                                 title="GooglePlus"></a></li>
-                        <li class="rss pull-left"><a target="_blank" rel="nofollow" href="#" title="RSS"></a></li>
+                        <li class="rss pull-left"><a target="_blank" rel="nofollow" href="#"
+                                title="RSS"></a></li>
                         <li class="pintrest pull-left"><a target="_blank" rel="nofollow" href="#"
                                 title="PInterest"></a></li>
-                        <li class="linkedin pull-left"><a target="_blank" rel="nofollow" href="#" title="Linkedin"></a>
+                        <li class="linkedin pull-left"><a target="_blank" rel="nofollow" href="#"
+                                title="Linkedin"></a>
                         </li>
-                        <li class="youtube pull-left"><a target="_blank" rel="nofollow" href="#" title="Youtube"></a>
+                        <li class="youtube pull-left"><a target="_blank" rel="nofollow" href="#"
+                                title="Youtube"></a>
                         </li>
                     </ul>
                 </div>
                 <div class="col-xs-12 col-sm-6 no-padding">
                     <div class="clearfix payment-methods">
                         <ul>
-                            <li><img src="{{ asset('frontend') }}/assets/images/payments/1.png" alt=""></li>
-                            <li><img src="{{ asset('frontend') }}/assets/images/payments/2.png" alt=""></li>
-                            <li><img src="{{ asset('frontend') }}/assets/images/payments/3.png" alt=""></li>
-                            <li><img src="{{ asset('frontend') }}/assets/images/payments/4.png" alt=""></li>
-                            <li><img src="{{ asset('frontend') }}/assets/images/payments/5.png" alt=""></li>
+                            <li><img src="{{ asset('frontend') }}/assets/images/payments/1.png" alt="">
+                            </li>
+                            <li><img src="{{ asset('frontend') }}/assets/images/payments/2.png" alt="">
+                            </li>
+                            <li><img src="{{ asset('frontend') }}/assets/images/payments/3.png" alt="">
+                            </li>
+                            <li><img src="{{ asset('frontend') }}/assets/images/payments/4.png" alt="">
+                            </li>
+                            <li><img src="{{ asset('frontend') }}/assets/images/payments/5.png" alt="">
+                            </li>
                         </ul>
                     </div><!-- /.payment-methods -->
                 </div>
@@ -785,7 +795,7 @@
                     var rows = ""
                     $.each(response, function(key, value) {
                         rows += `<tr>
-     <td class="col-md-2"><img src="/${value.product.product_thambnail}" alt="imga"></td>
+     <td class="col-md-2"><img src="/${value.product.product_thambnail}" alt="image"></td>
      <td class="col-md-7">
       <div class="product-name"><a href="#">${value.product.product_name_en}</a></div>
       <div class="price">
@@ -841,6 +851,83 @@
         }
     </script>
     {{-- //end wishlist --}}
+
+    {{-- Start Cart Page --}}
+    <script>
+        function cart() {
+            $.ajax({
+                type: 'GET',
+                url: "{{ url('/user/get-cart-product') }}",
+                dataType: 'json',
+                success: function(response) {
+                    var rows = ""
+                    $.each(response.carts, function(key, value) {
+                        rows += `<tr>
+                                    <td class="col-md-2">
+                                        <img src="/${value.options.image}" alt="image" style="height:60px; width:60px;">
+                                    </td>
+                                    <td class="col-md-2">
+                                        <div class="product-name"><strong>${value.name}</strong></div>
+                                        <strong> $${value.price}</strong>
+                                    </td>
+                                    <td class="col-md-2">
+                                        <strong>${value.options.color}</strong>
+                                    </td>
+                                    <td class="col-md-2">
+                                        ${value.options.size == null ? `<span >......</span>`:`<strong>${value.options.size}</strong>`}
+                                    </td>
+                                    <td class="col-md-2">
+                                        ${value.qty > 1 ? ` <button type="submit" class="btn btn-success btn-sm" id="${value.rowId}" onclick="cartDecrement(this.id)">-</button>`: ` <button type="submit" class="btn btn-success btn-sm" disabled>-</button>`
+                                        }
+                                        <input type="text" value="${value.qty}" min="1" max="100" disabled style="width:25px;">
+                                        <button type="submit" id="${value.rowId}" onclick="cartIncrement(this.id)" class="btn btn-danger btn-sm">+</button>
+                                    </td>
+                                    <td class="col-md-1">
+                                        <strong>$${value.subtotal}</strong>
+                                    </td>
+                                    <td class="col-md-1 close-btn">
+                                    <button type="submit" class="" id="${value.rowId}" onclick="CartRemove(this.id)" ><i class="fa fa-times"></i></button>
+                                    </td>
+                                </tr>`
+                    });
+                    $('#cartPage').html(rows);
+                }
+            })
+        }
+        cart();
+
+        function wishlistRemove(id) {
+            $.ajax({
+                type: 'GET',
+                url: "{{ url('/user/wishlist-remove/') }}/" + id,
+                dataType: 'json',
+                success: function(data) {
+                    wishlist();
+                    //  start message
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000
+                    })
+                    if ($.isEmptyObject(data.error)) {
+                        Toast.fire({
+                            type: 'success',
+                            title: data.success
+                        })
+                    } else {
+                        Toast.fire({
+                            type: 'error',
+                            title: data.error
+                        })
+                    }
+                    //  end message
+                }
+            });
+        }
+    </script>
+
+    {{-- End Cart Page --}}
 </body>
 
 </html>

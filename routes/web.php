@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\LanguageController;
 use App\Http\Controllers\Frontend\IndexController;
+use App\Http\Controllers\User\CartPageController;
 use App\Http\Controllers\User\WishlistController;
 use Illuminate\Support\Facades\Auth;
 
@@ -115,6 +116,10 @@ Route::group(['prefix' => 'user', 'middleware' => ['user', 'auth'], 'namespace' 
     Route::get('/get-wishlist-product', [WishlistController::class, 'readAllProduct']);
 
     Route::get('wishlist-remove/{id}', [WishlistController::class, 'destroy']);
+
+    //cart
+    Route::get('/my-cart', [CartController::class, 'create'])->name('cart');
+    Route::get('/get-cart-product', [CartController::class, 'getAllCart']);
 });
 
 //==============================================Frontend Routes=========================================
