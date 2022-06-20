@@ -121,6 +121,8 @@ Route::group(['prefix' => 'user', 'middleware' => ['user', 'auth'], 'namespace' 
     Route::get('/my-cart', [CartController::class, 'create'])->name('cart');
     Route::get('/get-cart-product', [CartController::class, 'getAllCart']);
     Route::get('/cart-remove/{rowId}', [CartController::class, 'destroy']);
+    Route::get('/cart-increment/{rowId}', [CartController::class, 'cartIncrement']);
+    Route::get('/cart-decrement/{rowId}', [CartController::class, 'cartDecrement']);
 });
 
 //==============================================Frontend Routes=========================================

@@ -915,19 +915,15 @@
                                     </td>
                                     <td class="cart-product-edit"> ${value.options.size == null ? `<span >......</span>`:`<strong>${value.options.size}</strong>`}</td>
                                         <td class="cart-product-quantity">
-                                            <div class="quant-input">
-                                                <div class="arrows">
-                                                    <div class="arrow plus gradient"><span class="ir"><i
-                                                                class="icon fa fa-sort-asc"></i></span></div>
-                                                    <div class="arrow minus gradient"><span class="ir"><i
-                                                                class="icon fa fa-sort-desc"></i></span></div>
-                                                </div>
-                                                <input type="text" value="${value.qty}" min="1" max="100">
-                                            </div>
+                                            ${value.qty > 1 ? ` <button type="submit" class="btn btn-success btn-sm" id="${value.rowId}" onclick="cartDecrement(this.id)">-</button>`: ` <button type="submit" class="btn btn-success btn-sm" disabled>-</button>`
+                                    }
+                                    <input type="text" value="${value.qty}" min="1" max="100" disabled style="width:25px;">
+                                    <button type="submit" id="${value.rowId}" onclick="cartIncrement(this.id)" class="btn btn-danger btn-sm">+</button>
+
                                         </td>
                                         <td class="cart-product-sub-total"><span class="cart-sub-total-price">$${value.subtotal}</span>
                                         </td>
-                                        <td class="romove-item"><button type="submit" id="${value.rowId}" onclick="CartRemove(this.id)" class="icon"><i
+                                        <td class="romove-item"><button type="submit" id="${value.rowId}" onclick="CartRemove(this.id)" class="btn btn-sm btn-danger"><i
                                                 class="fa fa-trash-o"></i></button></td>
                                     </tr>`
                     });
@@ -964,6 +960,30 @@
                         })
                     }
                     //  end message
+                }
+            });
+        }
+
+        function cartIncrement(rowId) {
+            $.ajax({
+                type: 'GET',
+                url: "{{ url('/user/cart-increment/') }}/" + rowId,
+                dataType: 'json',
+                success: function(data) {
+                    cart();
+                    miniCart();
+                }
+            });
+        }
+
+        function cartDecrement(rowId) {
+            $.ajax({
+                type: 'GET',
+                url: "{{ url('/user/cart-decrement/') }}/" + rowId,
+                dataType: 'json',
+                success: function(data) {
+                    cart();
+                    miniCart();
                 }
             });
         }
