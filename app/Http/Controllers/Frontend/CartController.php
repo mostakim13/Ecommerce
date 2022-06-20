@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Gloudemans\Shoppingcart\Facades\Cart;
+use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
@@ -82,5 +83,13 @@ class CartController extends Controller
             'cartQty' => $cartQty,
             'cartTotal' => round($cartTotal),
         ));
+    }
+
+
+    //==========================================Cart Remove===================================
+    public function destroy($rowId)
+    {
+        Cart::remove($rowId);
+        return response()->json(['success' => 'Successfully product remove']);
     }
 }

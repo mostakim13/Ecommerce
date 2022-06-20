@@ -104,22 +104,23 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin', 'auth'], 'namespace
 //================================================User Routes============================================
 Route::group(['prefix' => 'user', 'middleware' => ['user', 'auth'], 'namespace' => 'User'], function () {
     Route::get('dashboard', [UserController::class, 'index'])->name('user.dashboard');
-    Route::post('update/data', [UserController::class, 'updateData'])->name('update.profile');
+    Route::post('/update/data', [UserController::class, 'updateData'])->name('update.profile');
     Route::get('image', [UserController::class, 'imagePage'])->name('user-image');
-    Route::post('update/image', [UserController::class, 'updateImage'])->name('update-image');
-    Route::get('update/password', [UserController::class, 'updatePasswordPage'])->name('update-password');
-    Route::post('store/password', [UserController::class, 'storePassword'])->name('password-store');
+    Route::post('/update/image', [UserController::class, 'updateImage'])->name('update-image');
+    Route::get('/update/password', [UserController::class, 'updatePasswordPage'])->name('update-password');
+    Route::post('/store/password', [UserController::class, 'storePassword'])->name('password-store');
 
     //wishlist
-    Route::get('wishlist', [wishlistController::class, 'create'])->name('wishlist');
+    Route::get('/wishlist', [wishlistController::class, 'create'])->name('wishlist');
 
     Route::get('/get-wishlist-product', [WishlistController::class, 'readAllProduct']);
 
-    Route::get('wishlist-remove/{id}', [WishlistController::class, 'destroy']);
+    Route::get('/wishlist-remove/{id}', [WishlistController::class, 'destroy']);
 
     //cart
     Route::get('/my-cart', [CartController::class, 'create'])->name('cart');
     Route::get('/get-cart-product', [CartController::class, 'getAllCart']);
+    Route::get('/cart-remove/{rowId}', [CartController::class, 'destroy']);
 });
 
 //==============================================Frontend Routes=========================================

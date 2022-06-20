@@ -862,33 +862,74 @@
                 success: function(response) {
                     var rows = ""
                     $.each(response.carts, function(key, value) {
+                        // rows += `<tr>
+                    //             <td class="col-md-2">
+                    //                 <img src="/${value.options.image}" alt="image" style="height:60px; width:60px;">
+                    //             </td>
+                    //             <td class="col-md-2">
+                    //                 <div class="product-name"><strong>${value.name}</strong></div>
+                    //                 <strong> $${value.price}</strong>
+                    //             </td>
+                    //             <td class="col-md-2">
+                    //                 <strong>${value.options.color}</strong>
+                    //             </td>
+                    //             <td class="col-md-2">
+                    //                 ${value.options.size == null ? `<span >......</span>`:`<strong>${value.options.size}</strong>`}
+                    //             </td>
+                    //             <td class="col-md-2">
+                    //                 ${value.qty > 1 ? ` <button type="submit" class="btn btn-success btn-sm" id="${value.rowId}" onclick="cartDecrement(this.id)">-</button>`: ` <button type="submit" class="btn btn-success btn-sm" disabled>-</button>`
+                    //                 }
+                    //                 <input type="text" value="${value.qty}" min="1" max="100" disabled style="width:25px;">
+                    //                 <button type="submit" id="${value.rowId}" onclick="cartIncrement(this.id)" class="btn btn-danger btn-sm">+</button>
+                    //             </td>
+                    //             <td class="col-md-1">
+                    //                 <strong>$${value.subtotal}</strong>
+                    //             </td>
+                    //             <td class="col-md-1 close-btn">
+                    //             <button type="submit" class="" id="${value.rowId}" onclick="CartRemove(this.id)" ><i class="fa fa-times"></i></button>
+                    //             </td>
+                    //         </tr>`
                         rows += `<tr>
-                                    <td class="col-md-2">
-                                        <img src="/${value.options.image}" alt="image" style="height:60px; width:60px;">
+
+                                    <td class="cart-image">
+                                        <a class="entry-thumbnail" href="detail.html">
+                                            <img src="/${value.options.image}" alt="">
+                                        </a>
                                     </td>
-                                    <td class="col-md-2">
-                                        <div class="product-name"><strong>${value.name}</strong></div>
-                                        <strong> $${value.price}</strong>
+                                    <td class="cart-product-name-info">
+                                        <h4 class='cart-product-description'><a href="detail.html">${value.name}</a></h4>
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <div class="rating rateit-small"></div>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <div class="reviews">
+                                                    (06 Reviews)
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- /.row -->
+                                        <div class="cart-product-info">
+                                            <span class="product-color">COLOR:<span>${value.options.color}</span></span>
+                                        </div>
                                     </td>
-                                    <td class="col-md-2">
-                                        <strong>${value.options.color}</strong>
-                                    </td>
-                                    <td class="col-md-2">
-                                        ${value.options.size == null ? `<span >......</span>`:`<strong>${value.options.size}</strong>`}
-                                    </td>
-                                    <td class="col-md-2">
-                                        ${value.qty > 1 ? ` <button type="submit" class="btn btn-success btn-sm" id="${value.rowId}" onclick="cartDecrement(this.id)">-</button>`: ` <button type="submit" class="btn btn-success btn-sm" disabled>-</button>`
-                                        }
-                                        <input type="text" value="${value.qty}" min="1" max="100" disabled style="width:25px;">
-                                        <button type="submit" id="${value.rowId}" onclick="cartIncrement(this.id)" class="btn btn-danger btn-sm">+</button>
-                                    </td>
-                                    <td class="col-md-1">
-                                        <strong>$${value.subtotal}</strong>
-                                    </td>
-                                    <td class="col-md-1 close-btn">
-                                    <button type="submit" class="" id="${value.rowId}" onclick="CartRemove(this.id)" ><i class="fa fa-times"></i></button>
-                                    </td>
-                                </tr>`
+                                    <td class="cart-product-edit"> ${value.options.size == null ? `<span >......</span>`:`<strong>${value.options.size}</strong>`}</td>
+                                        <td class="cart-product-quantity">
+                                            <div class="quant-input">
+                                                <div class="arrows">
+                                                    <div class="arrow plus gradient"><span class="ir"><i
+                                                                class="icon fa fa-sort-asc"></i></span></div>
+                                                    <div class="arrow minus gradient"><span class="ir"><i
+                                                                class="icon fa fa-sort-desc"></i></span></div>
+                                                </div>
+                                                <input type="text" value="${value.qty}" min="1" max="100">
+                                            </div>
+                                        </td>
+                                        <td class="cart-product-sub-total"><span class="cart-sub-total-price">$${value.subtotal}</span>
+                                        </td>
+                                        <td class="romove-item"><button type="submit" id="${value.rowId}" onclick="CartRemove(this.id)" class="icon"><i
+                                                class="fa fa-trash-o"></i></button></td>
+                                    </tr>`
                     });
                     $('#cartPage').html(rows);
                 }
@@ -896,13 +937,14 @@
         }
         cart();
 
-        function wishlistRemove(id) {
+        function CartRemove(id) {
             $.ajax({
                 type: 'GET',
-                url: "{{ url('/user/wishlist-remove/') }}/" + id,
+                url: "{{ url('/user/cart-remove/') }}/" + id,
                 dataType: 'json',
                 success: function(data) {
-                    wishlist();
+                    cart();
+                    miniCart();
                     //  start message
                     const Toast = Swal.mixin({
                         toast: true,
