@@ -5,6 +5,7 @@ use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Frontend\CartController;
@@ -98,6 +99,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin', 'auth'], 'namespace
     Route::get('slider/delete/{id}', [SliderController::class, 'destroy']);
     Route::get('slider-inactive/{id}', [SliderController::class, 'inactive']);
     Route::get('slider-active/{id}', [SliderController::class, 'active']);
+
+    //Coupon
+    Route::get('coupon', [CouponController::class, 'create'])->name('coupon');
+    Route::post('coupon/store', [CouponController::class, 'store'])->name('coupon-store');
 });
 
 
