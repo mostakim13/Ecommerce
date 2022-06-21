@@ -103,6 +103,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin', 'auth'], 'namespace
     //Coupon
     Route::get('coupon', [CouponController::class, 'create'])->name('coupon');
     Route::post('coupon/store', [CouponController::class, 'store'])->name('coupon-store');
+    Route::get('coupon-edit/{id}', [CouponController::class, 'edit']);
+    Route::post('coupon/update', [CouponController::class, 'update'])->name('coupon-update');
+    Route::get('coupon-delete/{id}', [CouponController::class, 'destroy']);
 });
 
 

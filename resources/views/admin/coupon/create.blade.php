@@ -43,10 +43,10 @@
                                                     @endif
                                                 </td>
                                                 <td>
-                                                    <a href="{{ url('admin/brand-edit/' . $item->id) }}"
+                                                    <a href="{{ url('admin/coupon-edit/' . $item->id) }}"
                                                         class="btn btn-info btn-sm" title="edit data"><i
                                                             class="fa fa-pencil"></i></a>
-                                                    <a href="{{ url('admin/brand-delete/' . $item->id) }}"
+                                                    <a href="{{ url('admin/coupon-delete/' . $item->id) }}"
                                                         class="btn btn-sm btn-danger" id="delete" title="delete data"><i
                                                             class="fa fa-trash"></i></a>
                                                 </td>
