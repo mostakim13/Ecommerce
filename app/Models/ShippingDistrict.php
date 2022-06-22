@@ -9,4 +9,8 @@ class ShippingDistrict extends Model
 {
     use HasFactory;
     protected $guarded = [];
+    public function division()
+    {
+        return $this->belongsTo(ShippingDivision::class, 'division_id');
+    }
 }
