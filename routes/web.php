@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\ShippingAreaController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\LanguageController;
@@ -106,6 +107,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin', 'auth'], 'namespace
     Route::get('coupon-edit/{id}', [CouponController::class, 'edit']);
     Route::post('coupon/update', [CouponController::class, 'update'])->name('coupon-update');
     Route::get('coupon-delete/{id}', [CouponController::class, 'destroy']);
+
+    //Shipping Area
+    Route::get('division', [ShippingAreaController::class, 'createDivision'])->name('division');
+    Route::post('division/store', [ShippingAreaController::class, 'storeDivision'])->name('division-store');
 });
 
 
