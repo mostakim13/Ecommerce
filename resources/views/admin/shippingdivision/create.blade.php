@@ -1,5 +1,5 @@
 @extends('layouts.admin-master')
-@section('categories')
+@section('shipping')
     active show-sub
 @endsection
 @section('add-division')
@@ -34,10 +34,10 @@
                                             <tr>
                                                 <td>{{ $item->division_name }}</td>
                                                 <td>
-                                                    <a href="{{ url('admin/category-edit/' . $item->id) }}"
+                                                    <a href="{{ url('admin/division-edit/' . $item->id) }}"
                                                         class="btn btn-info btn-sm" title="edit data"><i
                                                             class="fa fa-pencil"></i></a>
-                                                    <a href="{{ url('admin/category-delete/' . $item->id) }}"
+                                                    <a href="{{ url('admin/division-delete/' . $item->id) }}"
                                                         class="btn btn-sm btn-danger" id="delete" title="delete data"><i
                                                             class="fa fa-trash"></i></a>
                                                 </td>

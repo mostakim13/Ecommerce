@@ -111,6 +111,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin', 'auth'], 'namespace
     //Shipping Area
     Route::get('division', [ShippingAreaController::class, 'createDivision'])->name('division');
     Route::post('division/store', [ShippingAreaController::class, 'storeDivision'])->name('division-store');
+    Route::get('division-edit/{id}', [ShippingAreaController::class, 'editDivision']);
+    Route::post('division/update', [ShippingAreaController::class, 'updateDivision'])->name('division-update');
+    Route::get('division-delete/{id}', [ShippingAreaController::class, 'destroyDivision']);
 });
 
 
