@@ -97,7 +97,8 @@ class ShippingAreaController extends Controller
 
     public function editDistrict($district_id)
     {
-        $division = ShippingDistrict::findOrFail($district_id);
+        $divisions = ShippingDivision::orderBy('division_name', 'ASC')->get();
+        $district = ShippingDistrict::findOrFail($district_id);
         return view('admin.shippingdistrict.edit', get_defined_vars());
     }
 
@@ -110,7 +111,7 @@ class ShippingAreaController extends Controller
         ShippingDistrict::findOrFail($request->id)->update([
             'division_id' => $request->division_id,
             'district_name' => $request->district_name,
-            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now('Asia/Dhaka'),
         ]);
         $notification = array(
             'message' => 'District updated successfully',
@@ -160,6 +161,41 @@ class ShippingAreaController extends Controller
         ]);
         $notification = array(
             'message' => 'State added successfully',
+            'alert-type' => 'success'
+        );
+        return Redirect()->back()->with($notification);
+    }
+
+    public function editState($state_id)
+    {
+        $divisions = ShippingDivision::orderBy('division_name', 'ASC')->get();
+        $state = ShippingState::findOrFail($state_id);
+        return view('admin.shippingstate.edit', get_defined_vars());
+    }
+
+    public function updateState(Request $request)
+    {
+        $request->validate([
+            'division_id' => 'required',
+            'state_name' => 'required',
+        ]);
+        ShippingState::findOrFail($request->id)->update([
+            'division_id' => $request->division_id,
+            'state_name' => $request->state_name,
+            'updated_at' => Carbon::now('Asia/Dhaka'),
+        ]);
+        $notification = array(
+            'message' => 'State updated successfully',
+            'alert-type' => 'success'
+        );
+        return Redirect()->route('state')->with($notification);
+    }
+
+    public function destroyState($state_id)
+    {
+        ShippingState::findOrFail($state_id)->delete();
+        $notification = array(
+            'message' => 'State deleted successfully',
             'alert-type' => 'success'
         );
         return Redirect()->back()->with($notification);
