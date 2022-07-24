@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\ShippingDistrict;
 use App\Models\ShippingDivision;
+use App\Models\ShippingState;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -123,6 +124,42 @@ class ShippingAreaController extends Controller
         ShippingDistrict::findOrFail($district_id)->delete();
         $notification = array(
             'message' => 'District deleted successfully',
+            'alert-type' => 'success'
+        );
+        return Redirect()->back()->with($notification);
+    }
+
+
+    //state
+    public function createState()
+    {
+        $states = ShippingState::with('division', 'district')->orderBy('id', 'DESC')->get();
+        $divisions = ShippingDivision::orderBy('division_name', 'ASC')->get();
+        return view('admin.shippingstate.create', compact('states', 'divisions'));
+    }
+
+    public function getDistrictAjax($division_id)
+    {
+        $shipping = ShippingDistrict::where('division_id', $division_id)->orderBy('district_name', 'ASC')->get();
+        return json_encode($shipping);
+    }
+
+    public function storeState(Request $request)
+    {
+        $request->validate([
+            'division_id' => 'required',
+            'district_id' => 'required',
+            'state_name' => 'required',
+        ]);
+
+        ShippingState::insert([
+            'division_id' => $request->division_id,
+            'district_id' => $request->district_id,
+            'state_name' => $request->state_name,
+            'created_at' => Carbon::now('Asia/Dhaka'),
+        ]);
+        $notification = array(
+            'message' => 'State added successfully',
             'alert-type' => 'success'
         );
         return Redirect()->back()->with($notification);
