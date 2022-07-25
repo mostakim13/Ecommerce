@@ -186,3 +186,6 @@ Route::get('/minicart/product-remove/{rowId}', [CartController::class, 'miniCart
 
 //add to wishlist
 Route::post('/add-to-wishlist/{id}', [WishlistController::class, 'addToWishlist']);
+
+//coupon
+Route::post('/coupon-apply', [CartController::class, 'couponApply']);
